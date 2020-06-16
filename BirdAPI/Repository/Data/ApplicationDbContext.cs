@@ -648,6 +648,227 @@ namespace Repository.Data
                        MaxCulmen = 11,
 
                    });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 38,
+                       AlphaCode = "TRES",
+                       SpeciesName = "Tree Swallow",
+                       BandSize = "1",
+                       MinWing = 98,
+                       MaxWing = 125,
+                       MinTail = 49,
+                       MaxTail = 57,
+                       MinCulmen = 6,
+                       MaxCulmen = 7,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 39,
+                       AlphaCode = "SCTA",
+                       SpeciesName = "Scarlet Tanager",
+                       BandSize = "1B",
+                       MinWing = 86,
+                       MaxWing = 101,
+                       MinTail = 62,
+                       MaxTail = 72,
+                       MinCulmen = 9.9,
+                       MaxCulmen = 10.4,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 40,
+                       AlphaCode = "BRTH",
+                       SpeciesName = "Brown Thrasher",
+                       BandSize = "2-3",
+                       MinWing = 94,
+                       MaxWing = 117,
+                       MinTail = 111,
+                       MaxTail = 141,
+                       MinCulmen = 22.1,
+                       MaxCulmen = 28.8,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 41,
+                       AlphaCode = "HETH",
+                       SpeciesName = "Hermit Thrush",
+                       BandSize = "1B",
+                       MinWing = 78,
+                       MaxWing = 110,
+                       MinTail = 58,
+                       MaxTail = 79,
+                       MinCulmen = 13,
+                       MaxCulmen = 15.2,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 42,
+                       AlphaCode = "SWTH",
+                       SpeciesName = "Swainson's Thrush",
+                       BandSize = "1B",
+                       MinWing = 87,
+                       MaxWing = 104,
+                       MinTail = 61,
+                       MaxTail = 78,
+                       MinCulmen = 8,
+                       MaxCulmen = 9.5,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 43,
+                       AlphaCode = "TUTI",
+                       SpeciesName = "Tufted Titmouse",
+                       BandSize = "1B",
+                       MinWing = 73,
+                       MaxWing = 86,
+                       MinTail = 64,
+                       MaxTail = 79,
+                       MinCulmen = 11,
+                       MaxCulmen = 13,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 44,
+                       AlphaCode = "EATO",
+                       SpeciesName = "Eastern Towhee",
+                       BandSize = "F-1A-2/M-2-1A",
+                       MinWing = 72,
+                       MaxWing = 94,
+                       MinTail = 79,
+                       MaxTail = 101,
+                       MinCulmen = 12.9,
+                       MaxCulmen = 16.2,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 45,
+                       AlphaCode = "VEER",
+                       SpeciesName = "Veery",
+                       BandSize = "1B",
+                       MinWing = 89,
+                       MaxWing = 106,
+                       MinTail = 62,
+                       MaxTail = 79,
+                       MinCulmen = 12.4,
+                       MaxCulmen = 14.6,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 46,
+                       AlphaCode = "REVI",
+                       SpeciesName = "Red-eyed Vireo",
+                       BandSize = "1",
+                       MinWing = 72,
+                       MaxWing = 85,
+                       MinTail = 47,
+                       MaxTail = 60,
+                       MinCulmen = 11.6,
+                       MaxCulmen = 13.6,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 47,
+                       AlphaCode = "COYE",
+                       SpeciesName = "Common Yellowthroat",
+                       BandSize = "0-0A",
+                       MinWing = 47,
+                       MaxWing = 58,
+                       MinTail = 43,
+                       MaxTail = 58,
+                       MinCulmen = 13,
+                       MaxCulmen = 15,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 48,
+                       AlphaCode = "YWAR",
+                       SpeciesName = "Yellow Warbler",
+                       BandSize = "0-0A",
+                       MinWing = 55,
+                       MaxWing = 68,
+                       MinTail = 38,
+                       MaxTail = 50,
+                       MinCulmen = 6.9,
+                       MaxCulmen = 7.9,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 49,
+                       AlphaCode = "YPWA",
+                       SpeciesName = "Palm Warbler",
+                       BandSize = "0-0A",
+                       MinWing = 61,
+                       MaxWing = 71,
+                       MinTail = 51,
+                       MaxTail = 59,
+                       MinCulmen = 10.5,
+                       MaxCulmen = 11.5,
+
+                   });
+
+            builder.Entity<Species>()
+                   .HasData(
+                   new Species
+                   {
+                       SpeciesId = 50,
+                       AlphaCode = "CEDW",
+                       SpeciesName = "Cedar Waxwing",
+                       BandSize = "1B",
+                       MinWing = 88,
+                       MaxWing = 100,
+                       MinTail = 50,
+                       MaxTail = 61,
+                       MinCulmen = 5,
+                       MaxCulmen = 8,
+
+                   });
         }
     }
 }
