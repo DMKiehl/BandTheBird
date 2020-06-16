@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository.Data;
 
 namespace Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200616181225_AddingAValue")]
+    partial class AddingAValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +33,9 @@ namespace Repository.Migrations
                     b.Property<string>("BandSize")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("MaxBillToTip")
+                        .HasColumnType("float");
+
                     b.Property<double>("MaxCulmen")
                         .HasColumnType("float");
 
@@ -38,6 +43,9 @@ namespace Repository.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("MaxWing")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MinBillToTip")
                         .HasColumnType("float");
 
                     b.Property<double>("MinCulmen")
