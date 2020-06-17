@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using BandTheBirdProj.Models;
 using BandTheBirdProj.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 
 namespace BandTheBirdProj.Controllers
 {
@@ -23,7 +25,7 @@ namespace BandTheBirdProj.Controllers
             _context = context;
             _apiCalls = apiCalls;
         }
-        // GET: Researchers
+
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -38,19 +40,31 @@ namespace BandTheBirdProj.Controllers
             return View(weather);
         }
 
-        // GET: Researchers/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var researcher = _context.Researcher.Where(r => r.IdentityUserId == userId).SingleOrDefault();
+
+            if (researcher == null)
+            {
+                return NotFound();
+            }
+
+            return View(researcher);
         }
 
-        // GET: Researchers/Create
+ 
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Researchers/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Researcher researcher)
@@ -69,49 +83,61 @@ namespace BandTheBirdProj.Controllers
         }
 
         // GET: Researchers/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var researcher = await _context.Researcher.FindAsync(id);
+
+            if (researcher == null)
+            {
+                return NotFound();
+            }
+
+            return View(researcher);        
         }
 
         // POST: Researchers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int? id, Researcher researcher)
         {
-            try
+           if (id != researcher.ResearchId)
             {
-                // TODO: Add update logic here
+                return NotFound();
+            }
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+           if (ModelState.IsValid)
             {
-                return View();
+                try
+                {
+                    _context.Update(researcher);
+                    await _context.SaveChangesAsync();
+                }
+
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ResearcherExists(researcher.ResearchId))
+                    {
+                        return NotFound();
+                    }
+
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));                 
             }
+            return View(researcher);
         }
 
-        // GET: Researchers/Delete/5
-        public ActionResult Delete(int id)
+        private bool ResearcherExists(int id)
         {
-            return View();
-        }
-
-        // POST: Researchers/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return _context.Researcher.Any(e => e.ResearchId == id);
         }
     }
 }

@@ -15,18 +15,18 @@ namespace BandTheBirdProj.Models
         [DataType(DataType.Date)]
         public DateTime? ResearchDate { get; set; }
 
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
         [Display(Name = "Opening Temperature")]
-        public double OpenTemp { get; set; }
+        public double? OpenTemp { get; set; }
         [Display(Name = "Closing Temperature")]
-        public double CloseTemp { get; set; }
+        public double? CloseTemp { get; set; }
         [Display(Name = "Cloud Cover")]
         public string CloudCover { get; set; }
         public string Precipitation { get; set; }
         [Display(Name = "Open Time")]
         public string OpenTime { get; set; }
         [Display(Name = "Close Time")]
-        public string CloseTime { get; set; }
+        public string? CloseTime { get; set; }
     }
 }
