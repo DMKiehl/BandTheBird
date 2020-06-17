@@ -30,7 +30,7 @@ namespace BandTheBirdProj.Models
         public double ExposedCulmen { get; set; }
         public double Tarsus { get; set; }
         public string? Notes { get; set; }
-        public byte? [] Image { get; set; }
+        //public byte? [] Image { get; set; }
 
         [ForeignKey("BandingData")]
         public int BirdId { get; set; }

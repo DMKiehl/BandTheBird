@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BandTheBirdProj.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BandTheBirdProj.Models;
+using BandTheBirdProj.Contracts;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BandTheBirdProj.Controllers
 {
@@ -12,15 +16,26 @@ namespace BandTheBirdProj.Controllers
     {
 
         private readonly ApplicationDbContext _context;
+        private IAPIService _apiCalls;
 
-        public ResearchersController(ApplicationDbContext context)
+        public ResearchersController(ApplicationDbContext context, IAPIService apiCalls)
         {
             _context = context;
+            _apiCalls = apiCalls;
         }
         // GET: Researchers
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var researcherProfile = _context.Researcher.Where(r => r.IdentityUserId == userId).ToList();
+
+            if (researcherProfile.Count == 0)
+            {
+                return RedirectToAction("Create", "Researchers");
+            }
+            var researcher = _context.Researcher.Where(r => r.IdentityUserId == userId).SingleOrDefault();
+            CurrentWeather weather = await _apiCalls.GetCurrentWeather(researcher.ResearchSiteZip);
+            return View(weather);
         }
 
         // GET: Researchers/Details/5
@@ -38,18 +53,19 @@ namespace BandTheBirdProj.Controllers
         // POST: Researchers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Researcher researcher)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                researcher.IdentityUserId = userId;
+                _context.Add(researcher);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", researcher.IdentityUserId);
+            return View(researcher);
         }
 
         // GET: Researchers/Edit/5

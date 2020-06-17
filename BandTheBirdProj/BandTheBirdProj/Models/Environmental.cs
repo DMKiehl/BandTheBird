@@ -24,5 +24,9 @@ namespace BandTheBirdProj.Models
         [Display(Name = "Cloud Cover")]
         public string CloudCover { get; set; }
         public string Precipitation { get; set; }
+        [Display(Name = "Open Time")]
+        public string OpenTime { get; set; }
+        [Display(Name = "Close Time")]
+        public string CloseTime { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BandTheBirdProj.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -34,5 +35,10 @@ namespace BandTheBirdProj.Data
                 );
 
         }
+
+        public DbSet<Researcher> Researcher { get; set; }
+        public DbSet<BandingData> BandingData { get; set; }
+        public DbSet<BiologicalData> BiologicalData { get; set; }
+        public DbSet<Environmental> Environmental { get; set; }
     }
 }
