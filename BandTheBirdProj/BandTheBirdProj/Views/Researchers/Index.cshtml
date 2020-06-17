@@ -21,9 +21,9 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
-                zoom: 6
+                zoom: 10
             });
-            infoWindow = new google.maps.infoWindow;
+            infoWindow = new google.maps.InfoWindow;
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -55,6 +55,6 @@
 
         
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=@APIKey.MapsAPI&callback=initMap" async defer></script>
+    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=@APIKey.MapsAPI&callback=initMap"></script>
 
 </body>

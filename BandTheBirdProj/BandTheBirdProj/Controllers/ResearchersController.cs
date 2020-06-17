@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BandTheBirdProj.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,13 @@ namespace BandTheBirdProj.Controllers
 {
     public class ResearchersController : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+        public ResearchersController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: Researchers
         public ActionResult Index()
         {
