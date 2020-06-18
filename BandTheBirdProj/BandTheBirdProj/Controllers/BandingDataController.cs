@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BandTheBirdProj.Contracts;
 using BandTheBirdProj.Data;
 using BandTheBirdProj.Models;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +14,12 @@ namespace BandTheBirdProj.Controllers
     public class BandingDataController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
-        public BandingDataController(ApplicationDbContext context)
+        private IAPIService _apiCalls;
+
+        public BandingDataController(ApplicationDbContext context, IAPIService apiCalls)
         {
             _context = context;
+            _apiCalls = apiCalls;
             
         }
         // GET: BandingData
@@ -77,29 +80,6 @@ namespace BandTheBirdProj.Controllers
             }
         }
 
-        // GET: BandingData/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BandingData/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public ActionResult AddEnvironment()
         {
             var items = _context.ResearchSite.ToList();
@@ -114,8 +94,6 @@ namespace BandTheBirdProj.Controllers
 
         public IActionResult AddEnvironment(Environmental environmental)
         {
-            environmental.OpenTemp = (environmental.OpenTemp - 273.15) * 9 / 5 + 32;
-            environmental.CloseTemp = (environmental.CloseTemp - 273.15) * 9 / 5 + 32;
             var site = _context.ResearchSite.Where(r => r.SiteId == environmental.SiteId).SingleOrDefault();
             environmental.SiteName = site.SiteName;
 
@@ -123,6 +101,13 @@ namespace BandTheBirdProj.Controllers
             _context.SaveChanges();
             
             return RedirectToAction("Index", "Researchers");
+        }
+
+        public async Task<IActionResult> SelectSpecies()
+        {
+            var species = await _apiCalls.GetSpecies();
+            ViewBag.Species = species;
+            return View();
         }
     }
 }

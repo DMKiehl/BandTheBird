@@ -19,7 +19,7 @@
     <a asp-action="AllSites">All Research Sites</a> |
     <a asp-action="AddSite">Add a Research Site</a> |
     <a asp-controller="BandingData" asp-action="AddEnvironment">Daily Site Data</a> |
-    <a asp-controller="BandingData" asp-action="Index">Begin Banding</a>
+    <a asp-controller="BandingData" asp-action="Index">Banding Central</a>
 </p>
 <body>
     <div>
@@ -30,7 +30,7 @@
                 @Html.DisplayNameFor(model => model.main.temp)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.main.temp)K
+                @Html.DisplayFor(model => model.main.temp)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.clouds.all)
