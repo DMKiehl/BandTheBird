@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using BandTheBirdProj.Contracts;
 using BandTheBirdProj.Models;
@@ -50,5 +51,25 @@ namespace BandTheBirdProj.Services
             return null;
 
         }
+
+        public async Task<List<Species>> GetSpecies()
+        {
+            List<Species> allSpecies = new List<Species>();
+            string url = "https://localhost:44304/api/Species";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+
+                allSpecies = JsonConvert.DeserializeObject<List<Species>>(json);
+                return allSpecies;
+            }
+
+            return null;
+        }
+
+        
     }
 }

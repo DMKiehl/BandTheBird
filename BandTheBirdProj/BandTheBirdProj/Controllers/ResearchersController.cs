@@ -11,6 +11,10 @@ using BandTheBirdProj.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace BandTheBirdProj.Controllers
 {
@@ -142,7 +146,34 @@ namespace BandTheBirdProj.Controllers
 
         public async Task<IActionResult> AllSpecies()
         {
+            List<Species> species = await _apiCalls.GetSpecies();
+            return View(species);
+        }
 
+        public IActionResult AddSpecies()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("AddSpecies")]
+
+        public async Task<IActionResult> AddSpecies(Species species)
+        {
+            using var client = new HttpClient();
+            var url = "https://localhost:44304/api/Species";
+            var json = JsonConvert.SerializeObject(species);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllSpecies");
+            }
+
+            return RedirectToAction("AddSpecies");
+
+            
         }
     }
 }

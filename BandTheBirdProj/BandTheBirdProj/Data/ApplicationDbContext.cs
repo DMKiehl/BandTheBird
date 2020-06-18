@@ -41,5 +41,6 @@ namespace BandTheBirdProj.Data
         public DbSet<BiologicalData> BiologicalData { get; set; }
         public DbSet<Environmental> Environmental { get; set; }
         public DbSet<BandTheBirdProj.Models.Species> Species { get; set; }
+        public DbSet<BandTheBirdProj.Models.ResearchSite> ResearchSite { get; set; }
     }
 }

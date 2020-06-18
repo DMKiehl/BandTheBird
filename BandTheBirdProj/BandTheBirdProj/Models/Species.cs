@@ -22,7 +22,7 @@ namespace BandTheBirdProj.Models
         public int maxWing { get; set; }
         [Display(Name = "Minimum Tail")]
         public int minTail { get; set; }
-        [Display(Name = "Maximum Wing")]
+        [Display(Name = "Maximum Tail")]
         public int maxTail { get; set; }
         [Display(Name = "Minumum Exposed Culmen")]
         public float minCulmen { get; set; }

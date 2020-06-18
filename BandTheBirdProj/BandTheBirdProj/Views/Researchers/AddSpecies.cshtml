@@ -1,0 +1,71 @@
+﻿@model BandTheBirdProj.Models.Species
+
+@{
+    ViewData["Title"] = "AddSpecies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AddSpecies</h1>
+
+<h4>Species</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSpecies">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="alphaCode" class="control-label"></label>
+                <input asp-for="alphaCode" class="form-control" />
+                <span asp-validation-for="alphaCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="speciesName" class="control-label"></label>
+                <input asp-for="speciesName" class="form-control" />
+                <span asp-validation-for="speciesName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bandSize" class="control-label"></label>
+                <input asp-for="bandSize" class="form-control" />
+                <span asp-validation-for="bandSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="minWing" class="control-label"></label>
+                <input asp-for="minWing" class="form-control" />
+                <span asp-validation-for="minWing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="maxWing" class="control-label"></label>
+                <input asp-for="maxWing" class="form-control" />
+                <span asp-validation-for="maxWing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="minTail" class="control-label"></label>
+                <input asp-for="minTail" class="form-control" />
+                <span asp-validation-for="minTail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="maxTail" class="control-label"></label>
+                <input asp-for="maxTail" class="form-control" />
+                <span asp-validation-for="maxTail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="minCulmen" class="control-label"></label>
+                <input asp-for="minCulmen" class="form-control" />
+                <span asp-validation-for="minCulmen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="maxCulmen" class="control-label"></label>
+                <input asp-for="maxCulmen" class="form-control" />
+                <span asp-validation-for="maxCulmen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
