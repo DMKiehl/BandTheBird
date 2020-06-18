@@ -28,6 +28,11 @@ namespace BandTheBirdProj.Models
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
+        [ForeignKey("ResearchSite")]
+        public int SiteId { get; set; }
+        public string SiteName { get; set; }
+        public ResearchSite ResearchSite { get; set; }
+
 
     }
 }

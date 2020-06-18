@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BandTheBirdProj.Models.Species>
+
+@{
+    ViewData["Title"] = "AllSpecies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>AllSpecies</h1>
+
+<p>
+    <a asp-action="AddSpecies">Add a Species</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.alphaCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.speciesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bandSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.minWing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.maxWing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.minTail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.maxTail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.minCulmen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.maxCulmen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.alphaCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.speciesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bandSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.minWing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maxWing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.minTail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maxTail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.minCulmen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maxCulmen)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

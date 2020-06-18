@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Permissions;
 using System.Threading.Tasks;
@@ -15,8 +16,6 @@ namespace BandTheBirdProj.Models
         [DataType(DataType.Date)]
         public DateTime? ResearchDate { get; set; }
 
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
         [Display(Name = "Opening Temperature")]
         public double? OpenTemp { get; set; }
         [Display(Name = "Closing Temperature")]
@@ -28,5 +27,11 @@ namespace BandTheBirdProj.Models
         public string OpenTime { get; set; }
         [Display(Name = "Close Time")]
         public string? CloseTime { get; set; }
+
+        [ForeignKey("ResearchSite")]
+        public int SiteId { get; set; }
+        [Display(Name = "Research Site Name")]
+        public string SiteName { get; set; }
+        public ResearchSite ResearchSite { get; set; }
     }
 }

@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using BandTheBirdProj.ActionFilters;
+using BandTheBirdProj.Contracts;
+using BandTheBirdProj.Services;
 
 namespace BandTheBirdProj
 {
@@ -46,6 +48,7 @@ namespace BandTheBirdProj
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IAPIService, APICalls>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

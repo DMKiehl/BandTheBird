@@ -1,4 +1,4 @@
-﻿
+﻿@model BandTheBirdProj.Models.CurrentWeather
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,6 +15,37 @@
     </style>
 </head>
 <body>
+    <div>
+        <h4>Local Weather</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.main.temp)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.main.temp)K
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.clouds.all)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.clouds.all)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.weather[0].main)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.weather[0].main)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.weather[0].description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.weather[0].description)
+            </dd>
+                      
+        </dl>
+    </div>
     <div id="map"></div>
     <script>
         var map, infoWindow;
@@ -40,7 +71,7 @@
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
             } else {
-               
+
                 handleLocationError(false, infoWindow, map.getCenter());
             }
         }
@@ -53,8 +84,8 @@
             infoWindow.open(map);
         }
 
-        
+
     </script>
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=@APIKey.MapsAPI&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=@APIKey.MapsAPI&callback=initMap"></script>
 
 </body>

@@ -139,5 +139,10 @@ namespace BandTheBirdProj.Controllers
         {
             return _context.Researcher.Any(e => e.ResearchId == id);
         }
+
+        public async Task<IActionResult> AllSpecies()
+        {
+
+        }
     }
 }

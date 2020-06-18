@@ -20,7 +20,7 @@ namespace BandTheBirdProj.Services
 
         public async Task<CurrentWeather> GetCurrentWeather(int zip)
         {
-            string url = $"https://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&appid={APIKey.WeatherAPI}";
+            string url = "https://api.openweathermap.org/data/2.5/weather?zip=" + zip + ",us&appid=" + APIKey.WeatherAPI;
 
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(url);
