@@ -86,7 +86,6 @@ namespace BandTheBirdProj.Controllers
             return View(researcher);
         }
 
-        // GET: Researchers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,7 +103,6 @@ namespace BandTheBirdProj.Controllers
             return View(researcher);        
         }
 
-        // POST: Researchers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, Researcher researcher)
@@ -174,6 +172,54 @@ namespace BandTheBirdProj.Controllers
             return RedirectToAction("AddSpecies");
 
             
+        }
+
+        public ActionResult AddSite()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("AddSite")]
+
+        public async Task<IActionResult> AddSite(ResearchSite site)
+        {
+            var address = site.SiteStreetAddress + ", " + site.SiteCity + ", " + site.SiteState;
+            GeoCode geocode = await _apiCalls.GoogleGeocoding(address);
+            site.Latitude = geocode.results[0].geometry.location.lat;
+            site.Longitude = geocode.results[0].geometry.location.lng;
+
+            _context.ResearchSite.Add(site);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AllSites()
+        {
+            IQueryable<ResearchSite> sites = _context.ResearchSite;
+            return View(sites);
+        }
+
+        public ActionResult EditSite(int id)
+        {
+            var site = _context.ResearchSite.Where(r => r.SiteId == id).SingleOrDefault();
+            return View(site);
+        }
+
+        public async Task<IActionResult> EditSite(ResearchSite site)
+        {
+            var researchSite = _context.ResearchSite.Where(r => r.SiteId == site.SiteId).SingleOrDefault();
+            var address = site.SiteStreetAddress + ", " + site.SiteCity + ", " + site.SiteState;
+            GeoCode geocode = await _apiCalls.GoogleGeocoding(address);
+            researchSite.Latitude = geocode.results[0].geometry.location.lat;
+            researchSite.Longitude = geocode.results[0].geometry.location.lng;
+            researchSite.SiteCity = site.SiteCity;
+            researchSite.SiteName = site.SiteName;
+            researchSite.SiteState = site.SiteState;
+            researchSite.SiteZip = site.SiteZip;
+            researchSite.SiteStreetAddress = site.SiteStreetAddress;
+            _context.SaveChanges();
+            return RedirectToAction("AllSites");
         }
     }
 }

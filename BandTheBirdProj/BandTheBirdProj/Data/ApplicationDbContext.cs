@@ -24,13 +24,13 @@ namespace BandTheBirdProj.Data
                     new IdentityRole
                     {
                         Name = "Admin",
-                        NormalizedName = "ADMIN"
+                        NormalizedName = "Admin"
                     },
 
                     new IdentityRole
                     {
                         Name = "Researcher",
-                        NormalizedName = "RESEARCHER"
+                        NormalizedName = "Researcher"
                     }
                 );
 
