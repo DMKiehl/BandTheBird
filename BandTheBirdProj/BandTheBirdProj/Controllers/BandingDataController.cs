@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BandTheBirdProj.Data;
+using BandTheBirdProj.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BandTheBirdProj.Controllers
 {
@@ -96,6 +98,31 @@ namespace BandTheBirdProj.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult AddEnvironment()
+        {
+            var items = _context.ResearchSite.ToList();
+            if (items != null)
+            {
+                ViewBag.Sites = items;
+            }
+            return View();
+        }
+
+        [HttpPost, ActionName("AddEnvironment")]
+
+        public IActionResult AddEnvironment(Environmental environmental)
+        {
+            environmental.OpenTemp = (environmental.OpenTemp - 273.15) * 9 / 5 + 32;
+            environmental.CloseTemp = (environmental.CloseTemp - 273.15) * 9 / 5 + 32;
+            var site = _context.ResearchSite.Where(r => r.SiteId == environmental.SiteId).SingleOrDefault();
+            environmental.SiteName = site.SiteName;
+
+            _context.Environmental.Add(environmental);
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index", "Researchers");
         }
     }
 }
