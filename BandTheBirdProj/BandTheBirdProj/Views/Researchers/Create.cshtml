@@ -9,6 +9,13 @@
 
 <h4>Researcher</h4>
 <hr />
+
+@*@if((bool)ViewData["WasInvalid"])
+{
+    <p>@ViewData["InvalidMessage"]</p>
+
+}*@
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">

@@ -103,9 +103,26 @@
             
             <div class="form-group">
                 <button type="button" onclick="validateForm()">Submit</button>
-                <input hidden id="submitFormButtom" type="submit" value="Create" class="btn btn-primary" />
+                <input hidden id="submitFormButton" type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+</div>
+<div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="warnModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Check Measurement!</h4>
+            </div>
+            <div class="modal-body">
+                <p>This measurement falls outside of the normal range for this species. Please double check and submit again.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -116,39 +133,46 @@
     let modalHasShown = false;
 
     function validateForm() {
-        let inputedWingChord = $("$wingChordInput").val();
+        alert("We should see this!");
+        let inputedWingChord = $("wingChordInput").val();
         let minValue = @Model.Species.minWing;
         let maxValue = @Model.Species.maxWing;
 
         if ((inputedWingChord < minValue || inputedWingChord > maxValue) && wingChordHasBeenValidate == false) {
-            //show modal
+            
+            $('#warnModal').modal('show');
             wingChordHasBeenValidate = true;
             modalHasShown = true;
         }
-        let inputedTail = $("$tailLengthInput").val();
+        let inputedTail = $("tailLengthInput").val();
         let minTailValue = @Model.Species.minTail;
         let maxTailValue = @Model.Species.maxTail;
 
         if ((inputedTail < minTailValue || inputedTail > maxTailValue) && tailLengthHasBeenValidate == false) {
+            $('#warnModal').modal('show');
             //show modal
             tailLengthHasBeenValidate = true;
             modalHasShown = true;
         }
 
-        let ExposedCulmenInput = $("$culmenInput").val();
+        let ExposedCulmenInput = $("culmenInput").val();
         let minCulmen = @Model.Species.minCulmen;
         let maxCulmen = @Model.Species.maxCulmen;
 
         if ((ExposedCulmenInput < minCulmen || ExposedCulmenInput > maxCulmen) && culmenHasBeenValidate == false) {
+            $('#warnModal').modal('show');
             //show modal
             culmenHasBeenValidate = true;
             modalHasShown = true;
+        }
+        if (!modalHasShown) {
+            $("#submitFormButton").click();
         }
 
     }
 </script>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 

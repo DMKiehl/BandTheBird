@@ -68,12 +68,15 @@ namespace BandTheBirdProj.Controllers
             return View();
         }
 
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Researcher researcher)
         {
+            
             if (ModelState.IsValid)
+            
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 researcher.IdentityUserId = userId;
@@ -83,6 +86,7 @@ namespace BandTheBirdProj.Controllers
             }
 
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", researcher.IdentityUserId);
+
             return View(researcher);
         }
 

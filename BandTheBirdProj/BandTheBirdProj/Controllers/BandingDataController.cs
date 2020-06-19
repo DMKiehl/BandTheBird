@@ -90,8 +90,17 @@ namespace BandTheBirdProj.Controllers
             _context.BiologicalData.Add(viewModel.BiologicalData);
             _context.SaveChanges();
 
+
+            //ViewData["WasInvalid"] = true;
+            //ViewData["InvalidMessage"] = "You didn't fill out the last field.";
+
             return RedirectToAction("Index");
         }
+
+        //private bool ValidAte(object test)
+        //{
+        //    return true;
+        //}
 
         public ActionResult AddEnvironment()
         {
