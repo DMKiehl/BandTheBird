@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace BandTheBirdProj.Models
 {
-    public class BandingViewModel
+    public class BiologicalViewModel
     {
-       
-        public BandingData BandingData { get; set; }
+
+        public Species Species { get; set; }
+        
         public BiologicalData BiologicalData { get; set; }
     }
 }

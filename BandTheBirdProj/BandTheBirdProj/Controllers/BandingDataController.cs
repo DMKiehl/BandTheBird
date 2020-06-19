@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BandTheBirdProj.Contracts;
 using BandTheBirdProj.Data;
@@ -35,7 +36,7 @@ namespace BandTheBirdProj.Controllers
         }
 
         // GET: BandingData/Create
-        public ActionResult Create()
+        public ActionResult CreateBird()
         {
             return View();
         }
@@ -43,11 +44,16 @@ namespace BandTheBirdProj.Controllers
         // POST: BandingData/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreateBird(BandingData data)
         {
             try
             {
-                // TODO: Add insert logic here
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                data.IdentityUserId = userId;
+                var site = _context.ResearchSite.Where(r => r.SiteId == data.SiteId).SingleOrDefault();
+                data.SiteName = site.SiteName;
+                _context.BandingData.Add(data);
+                _context.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -57,28 +63,7 @@ namespace BandTheBirdProj.Controllers
             }
         }
 
-        // GET: BandingData/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: BandingData/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        public async Task<IActionResult> CreateBiological()
 
         public ActionResult AddEnvironment()
         {
@@ -109,5 +94,11 @@ namespace BandTheBirdProj.Controllers
             ViewBag.Species = species;
             return View();
         }
+
+        //public ActionResult ViewData()
+        //{
+        //    BandingViewModel bandingViewModel = new BandingViewModel();
+        //    bandingViewModel.BandingData = _context.
+        //}
     }
 }
