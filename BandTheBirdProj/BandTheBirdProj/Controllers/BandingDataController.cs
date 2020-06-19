@@ -38,6 +38,11 @@ namespace BandTheBirdProj.Controllers
         // GET: BandingData/Create
         public ActionResult CreateBird()
         {
+            var items = _context.ResearchSite.ToList();
+            if (items != null)
+            {
+                ViewBag.Sites = items;
+            }
             return View();
         }
 
@@ -55,7 +60,7 @@ namespace BandTheBirdProj.Controllers
                 _context.BandingData.Add(data);
                 _context.SaveChanges();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("CreateBiological", data);
             }
             catch
             {
@@ -63,7 +68,30 @@ namespace BandTheBirdProj.Controllers
             }
         }
 
-        public async Task<IActionResult> CreateBiological()
+        public async Task<IActionResult> CreateBiological(BandingData data)
+        {
+            BiologicalViewModel viewModel = new BiologicalViewModel();
+            BiologicalData bioData = new BiologicalData();
+            viewModel.BiologicalData = bioData;
+            viewModel.BiologicalData.BirdId = data.BirdId;
+
+            var species = await _apiCalls.GetSpecies();
+            var bird = species.Where(s => s.alphaCode == data.AlphaCode).SingleOrDefault();
+            viewModel.Species = bird;
+
+            return View(viewModel);
+
+        }
+
+        [HttpPost, ActionName("CreateBiological")]
+
+        public ActionResult CreateBiological(BiologicalViewModel viewModel)
+        {
+            _context.BiologicalData.Add(viewModel.BiologicalData);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
         public ActionResult AddEnvironment()
         {
@@ -88,12 +116,7 @@ namespace BandTheBirdProj.Controllers
             return RedirectToAction("Index", "Researchers");
         }
 
-        public async Task<IActionResult> SelectSpecies()
-        {
-            var species = await _apiCalls.GetSpecies();
-            ViewBag.Species = species;
-            return View();
-        }
+      
 
         //public ActionResult ViewData()
         //{

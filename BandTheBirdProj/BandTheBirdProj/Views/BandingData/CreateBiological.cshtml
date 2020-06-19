@@ -1,0 +1,114 @@
+﻿@model BandTheBirdProj.Models.BiologicalViewModel
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View</h1>
+
+<h4>BiologicalData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateBiological">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Age" class="control-label"></label>
+                <input asp-for="BiologicalData.Age" class="form-control" />
+                <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.HowAged" class="control-label"></label>
+                <input asp-for="BiologicalData.HowAged" class="form-control" />
+                <span asp-validation-for="BiologicalData.HowAged" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Sex" class="control-label"></label>
+                <input asp-for="BiologicalData.Sex" class="form-control" />
+                <span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.HowSexed" class="control-label"></label>
+                <input asp-for="BiologicalData.HowSexed" class="form-control" />
+                <span asp-validation-for="BiologicalData.HowSexed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
+                <input asp-for="BiologicalData.CloacalProtuberance" class="form-control" />
+                <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.BroodPatch" class="control-label"></label>
+                <input asp-for="BiologicalData.BroodPatch" class="form-control" />
+                <span asp-validation-for="BiologicalData.BroodPatch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Skull" class="control-label"></label>
+                <input asp-for="BiologicalData.Skull" class="form-control" />
+                <span asp-validation-for="BiologicalData.Skull" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Fat" class="control-label"></label>
+                <input asp-for="BiologicalData.Fat" class="form-control" />
+                <span asp-validation-for="BiologicalData.Fat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.BodyMolt" class="control-label"></label>
+                <input asp-for="BiologicalData.BodyMolt" class="form-control" />
+                <span asp-validation-for="BiologicalData.BodyMolt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.FlightFeatherMolt" class="control-label"></label>
+                <input asp-for="BiologicalData.FlightFeatherMolt" class="form-control" />
+                <span asp-validation-for="BiologicalData.FlightFeatherMolt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.FlightFeatherWear" class="control-label"></label>
+                <input asp-for="BiologicalData.FlightFeatherWear" class="form-control" />
+                <span asp-validation-for="BiologicalData.FlightFeatherWear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Mass" class="control-label"></label>
+                <input asp-for="BiologicalData.Mass" class="form-control" />
+                <span asp-validation-for="BiologicalData.Mass" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.WingChord" class="control-label"></label>
+                <input id="wingChordInput" asp-for="BiologicalData.WingChord" class="form-control" />
+                <span asp-validation-for="BiologicalData.WingChord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.TailLength" class="control-label"></label>
+                <input id="tailLengthInput" asp-for="BiologicalData.TailLength" class="form-control" />
+                <span asp-validation-for="BiologicalData.TailLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.ExposedCulmen" class="control-label"></label>
+                <input id="culmenInput" asp-for="BiologicalData.ExposedCulmen" class="form-control" />
+                <span asp-validation-for="BiologicalData.ExposedCulmen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Tarsus" class="control-label"></label>
+                <input asp-for="BiologicalData.Tarsus" class="form-control" />
+                <span asp-validation-for="BiologicalData.Tarsus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BiologicalData.Notes" class="control-label"></label>
+                <input asp-for="BiologicalData.Notes" class="form-control" />
+                <span asp-validation-for="BiologicalData.Notes" class="text-danger"></span>
+            </div>
+            @Html.HiddenFor(Model => Model.BiologicalData.BirdId)
+           
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
