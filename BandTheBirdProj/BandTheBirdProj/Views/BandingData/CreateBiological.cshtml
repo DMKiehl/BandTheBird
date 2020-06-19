@@ -102,11 +102,51 @@
            
             
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="button" onclick="validateForm()">Submit</button>
+                <input hidden id="submitFormButtom" type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+<script>
+    let wingChordHasBeenValidate = false;
+    let tailLengthHasBeenValidate = false;
+    let culmenHasBeenValidate = false;
+
+    let modalHasShown = false;
+
+    function validateForm() {
+        let inputedWingChord = $("$wingChordInput").val();
+        let minValue = @Model.Species.minWing;
+        let maxValue = @Model.Species.maxWing;
+
+        if ((inputedWingChord < minValue || inputedWingChord > maxValue) && wingChordHasBeenValidate == false) {
+            //show modal
+            wingChordHasBeenValidate = true;
+            modalHasShown = true;
+        }
+        let inputedTail = $("$tailLengthInput").val();
+        let minTailValue = @Model.Species.minTail;
+        let maxTailValue = @Model.Species.maxTail;
+
+        if ((inputedTail < minTailValue || inputedTail > maxTailValue) && tailLengthHasBeenValidate == false) {
+            //show modal
+            tailLengthHasBeenValidate = true;
+            modalHasShown = true;
+        }
+
+        let ExposedCulmenInput = $("$culmenInput").val();
+        let minCulmen = @Model.Species.minCulmen;
+        let maxCulmen = @Model.Species.maxCulmen;
+
+        if ((ExposedCulmenInput < minCulmen || ExposedCulmenInput > maxCulmen) && culmenHasBeenValidate == false) {
+            //show modal
+            culmenHasBeenValidate = true;
+            modalHasShown = true;
+        }
+
+    }
+</script>
 
 <div>
     <a asp-action="Index">Back to List</a>
