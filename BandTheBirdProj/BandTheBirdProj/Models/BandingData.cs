@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BandTheBirdProj.Models
 {
@@ -22,7 +23,7 @@ namespace BandTheBirdProj.Models
         public string BandType { get; set; }
         public string BandSize { get; set; }
         public string AlphaCode { get; set; }
-        public string SpeciesName { get; set; }
+        public string SpeciesName { get; set; }     
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
@@ -32,6 +33,8 @@ namespace BandTheBirdProj.Models
         public int SiteId { get; set; }
         public string SiteName { get; set; }
         public ResearchSite ResearchSite { get; set; }
+
+        
 
 
     }

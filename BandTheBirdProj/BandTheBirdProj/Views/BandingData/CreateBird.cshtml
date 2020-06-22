@@ -39,7 +39,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="BandType" class="control-label"></label>
-                <input asp-for="BandType" class="form-control" />
+                @*<input asp-for="BandType" class="form-control" />*@
+                @Html.DropDownList("BandType", new SelectList(ViewBag.Type, "Code", "Name"))
                 <span asp-validation-for="BandType" class="text-danger"></span>
             </div>
             <div class="form-group">

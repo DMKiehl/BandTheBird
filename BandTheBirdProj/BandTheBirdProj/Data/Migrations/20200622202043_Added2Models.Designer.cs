@@ -4,82 +4,22 @@ using BandTheBirdProj.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BandTheBirdProj.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200622202043_Added2Models")]
+    partial class Added2Models
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BandTheBirdProj.Models.Age", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Age");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "After Hatch Year"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Hatch Year"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Local"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Second Year"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "After Second Year"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Third Year"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "After Third Year"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Not Attempted"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Indeterminable"
-                        });
-                });
 
             modelBuilder.Entity("BandTheBirdProj.Models.BandType", b =>
                 {
@@ -298,104 +238,6 @@ namespace BandTheBirdProj.Data.Migrations
                     b.ToTable("Environmental");
                 });
 
-            modelBuilder.Entity("BandTheBirdProj.Models.HowAgeSex", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HowAgeSex");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "S",
-                            Name = "Skull"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "C",
-                            Name = "Cloacal Prot."
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "B",
-                            Name = "Brood Patch"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "J",
-                            Name = "Juvenile Body Plumage"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "L",
-                            Name = "Molt Limit"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "P",
-                            Name = "Plumage"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Code = "M",
-                            Name = "Molt"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "F",
-                            Name = "Feather Wear"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Code = "I",
-                            Name = "Mouth/Bill"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Code = "E",
-                            Name = "Eye Color"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Code = "W",
-                            Name = "Wing Length"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Code = "T",
-                            Name = "Tail Length"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Code = "O",
-                            Name = "Other(Note)"
-                        });
-                });
-
             modelBuilder.Entity("BandTheBirdProj.Models.ResearchSite", b =>
                 {
                     b.Property<int>("SiteId")
@@ -576,15 +418,15 @@ namespace BandTheBirdProj.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b2a8e385-182c-4e47-aa4f-047360d8421d",
-                            ConcurrencyStamp = "bd0cba80-dc75-44e0-9ec6-40c442032bc6",
+                            Id = "0710ec2b-900b-41ce-8d05-292c91b3e45c",
+                            ConcurrencyStamp = "47d2be9d-7b91-49b0-86bf-9a0525890c52",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "62357c39-c45c-41cf-87b5-8722ec8812a6",
-                            ConcurrencyStamp = "e4a0411c-d902-4236-a0e2-d062d83de027",
+                            Id = "c852bee5-db91-403a-85bd-3d1aba587364",
+                            ConcurrencyStamp = "a34f31eb-6f58-42ca-88cb-55fbfe7318ef",
                             Name = "Researcher",
                             NormalizedName = "Researcher"
                         });
