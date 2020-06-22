@@ -154,12 +154,67 @@ namespace BandTheBirdProj.Controllers
             return RedirectToAction("Index", "Researchers");
         }
 
-      
 
-        //public ActionResult ViewData()
+
+        public ActionResult ViewAllData(string AlphaSearch, string BandSearch)
+        {
+            var birds = _context.BiologicalData.ToList();
+            foreach (var item in birds)
+            {
+                BiologicalData bioData = new BiologicalData();
+                var band = _context.BandingData.Where(b => b.BirdId == item.BirdId).SingleOrDefault();
+                bioData.BandingData = band;
+
+            }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var researcherBirds = birds.Where(b => b.BandingData.IdentityUserId == userId);
+
+            if(!String.IsNullOrEmpty(AlphaSearch))
+            {
+                researcherBirds = researcherBirds.Where(r => r.BandingData.AlphaCode.Contains(AlphaSearch));
+            }
+
+            if(!String.IsNullOrEmpty(BandSearch))
+            {
+                researcherBirds = researcherBirds.Where(r => r.BandingData.BandSize.Contains(BandSearch));
+            }
+
+            
+            
+            return View(researcherBirds);
+
+        }
+
+        //public ActionResult ViewAllData(string option, string search)
         //{
-        //    BandingViewModel bandingViewModel = new BandingViewModel();
-        //    bandingViewModel.BandingData = _context.
+        //    var birds = _context.BiologicalData.ToList();
+        //    foreach (var item in birds)
+        //    {
+        //        BiologicalData bioData = new BiologicalData();
+        //        var band = _context.BandingData.Where(b => b.BirdId == item.BirdId).SingleOrDefault();
+        //        bioData.BandingData = band;
+        //    }
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var researcherBirds = birds.Where(b => b.BandingData.IdentityUserId == userId);
+
+
+
+        //    if (option == "AlphaCode")
+        //    {
+        //        var codeBirds = researcherBirds.Where(r => r.BandingData.AlphaCode == search).ToList();
+        //        return View(codeBirds);
+        //    }
+
+        //    else if (option == "BandSize")
+        //    {
+        //        var bandBirds = researcherBirds.Where(r => r.BandingData.BandSize == search).ToList();
+        //        return View(bandBirds);
+        //    }
+
+        //    else
+        //    {
+        //        return View(researcherBirds);
+        //    }
         //}
     }
 }

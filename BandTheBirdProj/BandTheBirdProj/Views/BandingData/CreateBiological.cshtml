@@ -4,6 +4,10 @@
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+
+</style>
+ 
 
 
 <h4>BiologicalData</h4>
@@ -24,12 +28,14 @@
 
             }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+          
+            <div class="form-group" id="text">
                 <label asp-for="BiologicalData.Age" class="control-label"></label>
                 <input asp-for="BiologicalData.Age" class="form-control" />
                 <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        
+            <div class="form-group" id="text">
                 <label asp-for="BiologicalData.HowAged" class="control-label"></label>
                 <input asp-for="BiologicalData.HowAged" class="form-control" />
                 <span asp-validation-for="BiologicalData.HowAged" class="text-danger"></span>
@@ -125,6 +131,7 @@
         </form>
     </div>
 </div>
+
 @*<div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="warnModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

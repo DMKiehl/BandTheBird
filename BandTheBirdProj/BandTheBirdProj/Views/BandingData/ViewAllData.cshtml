@@ -1,0 +1,214 @@
+﻿@model IEnumerable<BandTheBirdProj.Models.BiologicalData>
+
+@{
+    ViewData["Title"] = "ViewAllData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View Data</h1>
+
+@*<input class="search" id="myInput" type="text" placeholder="Search for movies..."></br>*@
+@using (Html.BeginForm())
+{
+    <p>
+        Search by Alpha Code: @Html.TextBox("AlphaSearch")
+        <input type="submit" value="Search" />
+
+        Search by Band Size: @Html.TextBox("BandSearch")
+        <input type="submit" balue="Search" />
+    </p>
+}
+<table class="table" id="data">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.BandNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.CaptureDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.AlphaCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.SpeciesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.BanderIntials)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.CaptureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.NetNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.BandType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.BandSize)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.BandingData.SiteName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HowAged)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HowSexed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CloacalProtuberance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BroodPatch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skull)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BodyMolt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightFeatherMolt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightFeatherWear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WingChord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TailLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExposedCulmen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarsus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+{
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.BandNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.CaptureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.AlphaCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.SpeciesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.BanderIntials)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.CaptureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.NetNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.BandType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.BandSize)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BandingData.SiteName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HowAged)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HowSexed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CloacalProtuberance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BroodPatch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skull)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BodyMolt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightFeatherMolt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightFeatherWear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WingChord)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TailLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExposedCulmen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarsus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.BirdId">Edit</a>
+                    </td>*@
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+
+    $(document).ready(function () {
+        $('#myInput').on('keyup', function () {
+            var value = $(this).val().toLowerCase();
+            $('#data tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
