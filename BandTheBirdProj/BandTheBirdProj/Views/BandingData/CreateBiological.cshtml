@@ -28,13 +28,13 @@
 
             }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          
+
             <div class="form-group" id="text">
                 <label asp-for="BiologicalData.Age" class="control-label"></label>
                 <input asp-for="BiologicalData.Age" class="form-control" />
                 <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
             </div>
-        
+
             <div class="form-group" id="text">
                 <label asp-for="BiologicalData.HowAged" class="control-label"></label>
                 <input asp-for="BiologicalData.HowAged" class="form-control" />
@@ -50,17 +50,23 @@
                 <input asp-for="BiologicalData.HowSexed" class="form-control" />
                 <span asp-validation-for="BiologicalData.HowSexed" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter CP data?</span>
+            <input type="button" value="Yes" name="btnCP" /><br><br />
+            <div class="form-group" id="cp" style="display: none">
                 <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
                 <input asp-for="BiologicalData.CloacalProtuberance" class="form-control" />
                 <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter BP data?</span>
+            <input type="button" value="Yes" name="btnBP" /><br><br />
+            <div class="form-group" id="bp" style="display: none">
                 <label asp-for="BiologicalData.BroodPatch" class="control-label"></label>
                 <input asp-for="BiologicalData.BroodPatch" class="form-control" />
                 <span asp-validation-for="BiologicalData.BroodPatch" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter Skull data?</span>
+            <input type="button" value="Yes" name="btnskull" /><br><br />
+            <div class="form-group" id="skull" style="display: none">
                 <label asp-for="BiologicalData.Skull" class="control-label"></label>
                 <input asp-for="BiologicalData.Skull" class="form-control" />
                 <span asp-validation-for="BiologicalData.Skull" class="text-danger"></span>
@@ -70,17 +76,23 @@
                 <input asp-for="BiologicalData.Fat" class="form-control" />
                 <span asp-validation-for="BiologicalData.Fat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter Body Molt data?</span>
+            <input type="button" value="Yes" name="btnbmolt" /><br><br />
+            <div class="form-group" id="bodymolt" style="display: none">
                 <label asp-for="BiologicalData.BodyMolt" class="control-label"></label>
                 <input asp-for="BiologicalData.BodyMolt" class="form-control" />
                 <span asp-validation-for="BiologicalData.BodyMolt" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter Flight Feather Molt data?</span>
+            <input type="button" value="Yes" name="btnffmolt" /><br><br />
+            <div class="form-group" id="flightmolt" style="display: none">
                 <label asp-for="BiologicalData.FlightFeatherMolt" class="control-label"></label>
                 <input asp-for="BiologicalData.FlightFeatherMolt" class="form-control" />
                 <span asp-validation-for="BiologicalData.FlightFeatherMolt" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter Flight Feather Wear data?</span>
+            <input type="button" value="Yes" name="btnffwear" /><br><br />
+            <div class="form-group" id="flightwear" style="display: none">
                 <label asp-for="BiologicalData.FlightFeatherWear" class="control-label"></label>
                 <input asp-for="BiologicalData.FlightFeatherWear" class="form-control" />
                 <span asp-validation-for="BiologicalData.FlightFeatherWear" class="text-danger"></span>
@@ -105,7 +117,9 @@
                 <input id="culmenInput" asp-for="BiologicalData.ExposedCulmen" class="form-control" />
                 <span asp-validation-for="BiologicalData.ExposedCulmen" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <span>Enter Tarsus data?</span>
+            <input type="button" value="Yes" name="btntarsus" /><br><br />
+            <div class="form-group" id="tarsus" style="display: none">
                 <label asp-for="BiologicalData.Tarsus" class="control-label"></label>
                 <input asp-for="BiologicalData.Tarsus" class="form-control" />
                 <span asp-validation-for="BiologicalData.Tarsus" class="text-danger"></span>
@@ -131,70 +145,94 @@
         </form>
     </div>
 </div>
-
-@*<div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="warnModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Check Measurement!</h4>
-                </div>
-                <div class="modal-body">
-                    <p>This measurement falls outside of the normal range for this species. Please double check and submit again.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
-@*<script>
-        let wingChordHasBeenValidate = false;
-        let tailLengthHasBeenValidate = false;
-        let culmenHasBeenValidate = false;
-
-        let modalHasShown = false;
-
-        function validateForm() {
-            alert("We should see this!");
-            let inputedWingChord = $("wingChordInput").val();
-            let minValue = @Model.Species.minWing;
-            let maxValue = @Model.Species.maxWing;
-
-            if ((inputedWingChord < minValue || inputedWingChord > maxValue) && wingChordHasBeenValidate == false) {
-
-                $('#warnModal').modal('show');
-                wingChordHasBeenValidate = true;
-                modalHasShown = true;
+<script>
+    $(function () {
+        $("input[name=btnskull]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#skull").show();
             }
-            let inputedTail = $("tailLengthInput").val();
-            let minTailValue = @Model.Species.minTail;
-            let maxTailValue = @Model.Species.maxTail;
-
-            if ((inputedTail < minTailValue || inputedTail > maxTailValue) && tailLengthHasBeenValidate == false) {
-                $('#warnModal').modal('show');
-                //show modal
-                tailLengthHasBeenValidate = true;
-                modalHasShown = true;
+            else {
+                $("#skull").hide();
             }
+        });
+      
+    });
 
-            let ExposedCulmenInput = $("culmenInput").val();
-            let minCulmen = @Model.Species.minCulmen;
-            let maxCulmen = @Model.Species.maxCulmen;
-
-            if ((ExposedCulmenInput < minCulmen || ExposedCulmenInput > maxCulmen) && culmenHasBeenValidate == false) {
-                $('#warnModal').modal('show');
-                //show modal
-                culmenHasBeenValidate = true;
-                modalHasShown = true;
+    $(function () {
+        $("input[name=btnCP]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#cp").show();
             }
-            if (!modalHasShown) {
-                $("#submitFormButton").click();
+            else {
+                $("#cp").hide();
             }
+        });
 
-        }
-    </script>*@
+    });
+
+    $(function () {
+        $("input[name=btnBP]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#bp").show();
+            }
+            else {
+                $("#bp").hide();
+            }
+        });
+
+    });
+
+    $(function () {
+        $("input[name=btnbmolt]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#bodymolt").show();
+            }
+            else {
+                $("#bodymolt").hide();
+            }
+        });
+
+    });
+
+    $(function () {
+        $("input[name=btnffmolt]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#flightmolt").show();
+            }
+            else {
+                $("#flightmolt").hide();
+            }
+        });
+
+    });
+
+    $(function () {
+        $("input[name=btnffwear]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#flightwear").show();
+            }
+            else {
+                $("#flightwear").hide();
+            }
+        });
+
+    });
+
+
+    $(function () {
+        $("input[name=btntarsus]").click(function () {
+            if ($(this).val() == "Yes") {
+                $("#tarsus").show();
+            }
+            else {
+                $("#tarsus").hide();
+            }
+        });
+
+    });
+</script>
+
+
 
 <div>
     <a asp-action="Index">Back to List</a>
