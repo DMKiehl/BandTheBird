@@ -5,13 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>View</h1>
 
 <h4>BiologicalData</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateBiological">
+            @if ((bool)ViewData["WasInvalid"])
+            {
+                <p>@ViewData["InvalidMessage"]</p>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="VerifyData" /> @Html.DisplayNameFor(model => model.VerifyData)
+                    </label>
+
+                </div>
+
+            }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="BiologicalData.Age" class="control-label"></label>
@@ -99,80 +110,86 @@
                 <span asp-validation-for="BiologicalData.Notes" class="text-danger"></span>
             </div>
             @Html.HiddenFor(Model => Model.BiologicalData.BirdId)
-           
-            
+            @Html.HiddenFor(Model => Model.Species.alphaCode)
+            @Html.HiddenFor(Model => Model.Species.maxCulmen)
+            @Html.HiddenFor(Model => Model.Species.minCulmen)
+            @Html.HiddenFor(Model => Model.Species.maxWing)
+            @Html.HiddenFor(Model => Model.Species.minWing)
+            @Html.HiddenFor(Model => Model.Species.minTail)
+            @Html.HiddenFor(Model => Model.Species.maxTail)
+
             <div class="form-group">
-                <button type="button" onclick="validateForm()">Submit</button>
-                <input hidden id="submitFormButton" type="submit" value="Create" class="btn btn-primary" />
+                @*<button type="button" onclick="validateForm()">Submit</button>*@
+                <input id="submitFormButton" type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-<div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="warnModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Check Measurement!</h4>
-            </div>
-            <div class="modal-body">
-                <p>This measurement falls outside of the normal range for this species. Please double check and submit again.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+@*<div class="modal fade" id="warnModal" tabindex="-1" role="dialog" aria-labelledby="warnModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Check Measurement!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This measurement falls outside of the normal range for this species. Please double check and submit again.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
-    </div>
+    </div>*@
+@*<script>
+        let wingChordHasBeenValidate = false;
+        let tailLengthHasBeenValidate = false;
+        let culmenHasBeenValidate = false;
+
+        let modalHasShown = false;
+
+        function validateForm() {
+            alert("We should see this!");
+            let inputedWingChord = $("wingChordInput").val();
+            let minValue = @Model.Species.minWing;
+            let maxValue = @Model.Species.maxWing;
+
+            if ((inputedWingChord < minValue || inputedWingChord > maxValue) && wingChordHasBeenValidate == false) {
+
+                $('#warnModal').modal('show');
+                wingChordHasBeenValidate = true;
+                modalHasShown = true;
+            }
+            let inputedTail = $("tailLengthInput").val();
+            let minTailValue = @Model.Species.minTail;
+            let maxTailValue = @Model.Species.maxTail;
+
+            if ((inputedTail < minTailValue || inputedTail > maxTailValue) && tailLengthHasBeenValidate == false) {
+                $('#warnModal').modal('show');
+                //show modal
+                tailLengthHasBeenValidate = true;
+                modalHasShown = true;
+            }
+
+            let ExposedCulmenInput = $("culmenInput").val();
+            let minCulmen = @Model.Species.minCulmen;
+            let maxCulmen = @Model.Species.maxCulmen;
+
+            if ((ExposedCulmenInput < minCulmen || ExposedCulmenInput > maxCulmen) && culmenHasBeenValidate == false) {
+                $('#warnModal').modal('show');
+                //show modal
+                culmenHasBeenValidate = true;
+                modalHasShown = true;
+            }
+            if (!modalHasShown) {
+                $("#submitFormButton").click();
+            }
+
+        }
+    </script>*@
+
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>
-<script>
-    let wingChordHasBeenValidate = false;
-    let tailLengthHasBeenValidate = false;
-    let culmenHasBeenValidate = false;
-
-    let modalHasShown = false;
-
-    function validateForm() {
-        alert("We should see this!");
-        let inputedWingChord = $("wingChordInput").val();
-        let minValue = @Model.Species.minWing;
-        let maxValue = @Model.Species.maxWing;
-
-        if ((inputedWingChord < minValue || inputedWingChord > maxValue) && wingChordHasBeenValidate == false) {
-            
-            $('#warnModal').modal('show');
-            wingChordHasBeenValidate = true;
-            modalHasShown = true;
-        }
-        let inputedTail = $("tailLengthInput").val();
-        let minTailValue = @Model.Species.minTail;
-        let maxTailValue = @Model.Species.maxTail;
-
-        if ((inputedTail < minTailValue || inputedTail > maxTailValue) && tailLengthHasBeenValidate == false) {
-            $('#warnModal').modal('show');
-            //show modal
-            tailLengthHasBeenValidate = true;
-            modalHasShown = true;
-        }
-
-        let ExposedCulmenInput = $("culmenInput").val();
-        let minCulmen = @Model.Species.minCulmen;
-        let maxCulmen = @Model.Species.maxCulmen;
-
-        if ((ExposedCulmenInput < minCulmen || ExposedCulmenInput > maxCulmen) && culmenHasBeenValidate == false) {
-            $('#warnModal').modal('show');
-            //show modal
-            culmenHasBeenValidate = true;
-            modalHasShown = true;
-        }
-        if (!modalHasShown) {
-            $("#submitFormButton").click();
-        }
-
-    }
-</script>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
 

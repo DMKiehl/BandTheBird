@@ -74,11 +74,13 @@ namespace BandTheBirdProj.Controllers
             BiologicalData bioData = new BiologicalData();
             viewModel.BiologicalData = bioData;
             viewModel.BiologicalData.BirdId = data.BirdId;
+            viewModel.VerifyData = false;
 
             var species = await _apiCalls.GetSpecies();
             var bird = species.Where(s => s.alphaCode == data.AlphaCode).SingleOrDefault();
             viewModel.Species = bird;
 
+            ViewData["wasInvalid"] = false;
             return View(viewModel);
 
         }
@@ -87,20 +89,47 @@ namespace BandTheBirdProj.Controllers
 
         public ActionResult CreateBiological(BiologicalViewModel viewModel)
         {
-            _context.BiologicalData.Add(viewModel.BiologicalData);
-            _context.SaveChanges();
+            var validate = ValidateData(viewModel);
+
+            if (validate == false || viewModel.VerifyData == true)
+            {
+                _context.BiologicalData.Add(viewModel.BiologicalData);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
 
-            //ViewData["WasInvalid"] = true;
-            //ViewData["InvalidMessage"] = "You didn't fill out the last field.";
+            ViewData["wasInvalid"] = true;
+            ViewData["InvalidMessage"] = "One or more measurements are outside of the normal range for this species. Please review wing, tail and exposed culmen measurements. For " + viewModel.Species.alphaCode + " the wing chord should be between " + viewModel.Species.minWing +  " - " + viewModel.Species.maxWing + ". Tail should be between " + 
+                viewModel.Species.minTail + " - " + viewModel.Species.maxTail + ". Culmen should be between " + viewModel.Species.minCulmen + " - " + viewModel.Species.maxCulmen + ". If measurements are correct but outside of the normal range please check the box below to verify that the data is correct.";
 
-            return RedirectToAction("Index");
+            return View(viewModel);
+           
+            
+
+
         }
 
-        //private bool ValidAte(object test)
-        //{
-        //    return true;
-        //}
+        private bool ValidateData(BiologicalViewModel viewModel)
+        {
+            if (viewModel.BiologicalData.WingChord < viewModel.Species.minWing || viewModel.BiologicalData.WingChord > viewModel.Species.maxWing)
+            {
+                return true;
+            }
+            else if (viewModel.BiologicalData.TailLength < viewModel.Species.minTail || viewModel.BiologicalData.TailLength > viewModel.Species.maxTail)
+            {
+                return true;
+            }
+            else if (viewModel.BiologicalData.ExposedCulmen < viewModel.Species.minCulmen || viewModel.BiologicalData.ExposedCulmen > viewModel.Species.maxCulmen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
 
         public ActionResult AddEnvironment()
         {
