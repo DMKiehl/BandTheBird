@@ -58,7 +58,8 @@
             <input type="button" value="Yes" name="btnCP" /><br><br />
             <div class="form-group" id="cp" style="display: none">
                 <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
-                <input asp-for="BiologicalData.CloacalProtuberance" class="form-control" />
+                @*<input asp-for="BiologicalData.CloacalProtuberance" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.Skull", new SelectList(ViewBag.Skull, "Id", "Name"))
                 <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
             </div>
             <span>Enter BP data?</span>

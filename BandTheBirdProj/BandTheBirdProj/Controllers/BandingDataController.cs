@@ -101,6 +101,7 @@ namespace BandTheBirdProj.Controllers
             ViewBag.Sex = _context.Sex;
             ViewBag.How = _context.HowAgeSex;
             ViewBag.Skull = _context.Skull;
+            ViewBag.ClP = _context.CP;
 
             ViewData["wasInvalid"] = false;
             return View(viewModel);
@@ -122,6 +123,10 @@ namespace BandTheBirdProj.Controllers
                 if(viewModel.BiologicalData.Age == 3)
                 {
                     viewModel.BiologicalData.Age = 0;
+                }
+                if(viewModel.BiologicalData.CloacalProtuberance == 4)
+                {
+                    viewModel.BiologicalData.CloacalProtuberance = 0;
                 }
                 _context.BiologicalData.Add(viewModel.BiologicalData);
                 _context.SaveChanges();

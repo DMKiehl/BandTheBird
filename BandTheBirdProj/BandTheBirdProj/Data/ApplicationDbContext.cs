@@ -353,8 +353,34 @@ namespace BandTheBirdProj.Data
                  Id = 9,
                  Name = "Did not Attempt",
              });
-
-
+            builder.Entity<CP>()
+                .HasData(
+                new CP
+                {
+                    Id = 1,
+                    Name = "Small",
+                });
+            builder.Entity<CP>()
+             .HasData(
+             new CP
+             {
+                 Id = 2,
+                 Name = "Medium",
+             });
+            builder.Entity<CP>()
+            .HasData(
+            new CP
+            {
+                Id = 3,
+                Name = "Large",
+            });
+            builder.Entity<CP>()
+            .HasData(
+            new CP
+            {
+                Id = 4,
+                Name = "None",
+            });
         }
 
         public DbSet<Researcher> Researcher { get; set; }
@@ -368,5 +394,6 @@ namespace BandTheBirdProj.Data
         public DbSet<Age> Age { get; set; }
         public DbSet<HowAgeSex> HowAgeSex { get; set; }
         public DbSet<Skull> Skull { get; set; }
+        public DbSet<CP> CP { get; set; }
     }
 }
