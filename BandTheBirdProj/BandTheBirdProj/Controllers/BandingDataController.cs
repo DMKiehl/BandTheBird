@@ -55,7 +55,11 @@ namespace BandTheBirdProj.Controllers
             {
                 ViewBag.Type = type;
             }
+
+            
+
             return View();
+            
         }
 
         // POST: BandingData/Create
@@ -92,6 +96,12 @@ namespace BandTheBirdProj.Controllers
             var bird = species.Where(s => s.alphaCode == data.AlphaCode).SingleOrDefault();
             viewModel.Species = bird;
 
+
+            ViewBag.Age = _context.Age;
+            ViewBag.Sex = _context.Sex;
+            ViewBag.How = _context.HowAgeSex;
+            ViewBag.Skull = _context.Skull;
+
             ViewData["wasInvalid"] = false;
             return View(viewModel);
 
@@ -105,6 +115,14 @@ namespace BandTheBirdProj.Controllers
 
             if (validate == false || viewModel.VerifyData == true)
             {
+                if(viewModel.BiologicalData.Skull == 10)
+                {
+                    viewModel.BiologicalData.Skull = 0;
+                }
+                if(viewModel.BiologicalData.Age == 3)
+                {
+                    viewModel.BiologicalData.Age = 0;
+                }
                 _context.BiologicalData.Add(viewModel.BiologicalData);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

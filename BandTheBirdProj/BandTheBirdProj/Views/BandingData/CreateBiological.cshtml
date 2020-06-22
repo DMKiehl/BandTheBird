@@ -31,23 +31,27 @@
 
             <div class="form-group" id="text">
                 <label asp-for="BiologicalData.Age" class="control-label"></label>
-                <input asp-for="BiologicalData.Age" class="form-control" />
+                @*<input asp-for="BiologicalData.Age" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.Age", new SelectList(ViewBag.Age, "Id", "Name"))
                 <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
             </div>
 
             <div class="form-group" id="text">
                 <label asp-for="BiologicalData.HowAged" class="control-label"></label>
-                <input asp-for="BiologicalData.HowAged" class="form-control" />
+                @*<input asp-for="BiologicalData.HowAged" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.HowAged", new SelectList(ViewBag.How, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.HowAged" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BiologicalData.Sex" class="control-label"></label>
-                <input asp-for="BiologicalData.Sex" class="form-control" />
+                @*<input asp-for="BiologicalData.Sex" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.Sex", new SelectList(ViewBag.Sex, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BiologicalData.HowSexed" class="control-label"></label>
-                <input asp-for="BiologicalData.HowSexed" class="form-control" />
+                @*<input asp-for="BiologicalData.HowSexed" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.HowSexed", new SelectList(ViewBag.How, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.HowSexed" class="text-danger"></span>
             </div>
             <span>Enter CP data?</span>
@@ -68,7 +72,8 @@
             <input type="button" value="Yes" name="btnskull" /><br><br />
             <div class="form-group" id="skull" style="display: none">
                 <label asp-for="BiologicalData.Skull" class="control-label"></label>
-                <input asp-for="BiologicalData.Skull" class="form-control" />
+                @*<input asp-for="BiologicalData.Skull" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.Skull", new SelectList(ViewBag.Skull, "Id", "Name"))
                 <span asp-validation-for="BiologicalData.Skull" class="text-danger"></span>
             </div>
             <div class="form-group">

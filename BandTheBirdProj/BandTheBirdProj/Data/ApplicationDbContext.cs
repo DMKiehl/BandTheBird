@@ -290,6 +290,70 @@ namespace BandTheBirdProj.Data
                  Code = "O",
                  Name = "Other(Note)",
              });
+            builder.Entity<Skull>()
+                .HasData(
+                new Skull
+                {
+                    Id = 10,
+                    Name = "None",
+                });
+            builder.Entity<Skull>()
+              .HasData(
+              new Skull
+              {
+                  Id = 1,
+                  Name = "Trace",
+              });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 2,
+                 Name = "< 1/3",
+             });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 3,
+                 Name = "Half",
+             });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 4,
+                 Name = "> 2/3",
+             });
+            builder.Entity<Skull>()
+                .HasData(
+                new Skull
+                {
+                    Id = 5,
+                    Name = "Almost Complete",
+                });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 6,
+                 Name = "Fully Complete",
+             });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 8,
+                 Name = "Invisible",
+             });
+            builder.Entity<Skull>()
+             .HasData(
+             new Skull
+             {
+                 Id = 9,
+                 Name = "Did not Attempt",
+             });
+
 
         }
 
@@ -303,5 +367,6 @@ namespace BandTheBirdProj.Data
         public DbSet<Sex> Sex { get; set; }
         public DbSet<Age> Age { get; set; }
         public DbSet<HowAgeSex> HowAgeSex { get; set; }
+        public DbSet<Skull> Skull { get; set; }
     }
 }
