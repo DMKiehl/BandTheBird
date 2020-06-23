@@ -51,12 +51,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="AlphaCode" class="control-label"></label>
-                <input asp-for="AlphaCode" class="form-control" />
+                @*<input asp-for="AlphaCode" class="form-control" />*@
+                @Html.DropDownList("AlphaCode", new SelectList(ViewBag.Species, "alphaCode", "alphaCode"))
                 <span asp-validation-for="AlphaCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SpeciesName" class="control-label"></label>
-                <input asp-for="SpeciesName" class="form-control" />
+                @*<input asp-for="SpeciesName" class="form-control" />*@
+                @Html.DropDownList("SpeciesName", new SelectList(ViewBag.Species, "speciesName", "speciesName"))
                 <span asp-validation-for="SpeciesName" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for-"IdentityUserId" />

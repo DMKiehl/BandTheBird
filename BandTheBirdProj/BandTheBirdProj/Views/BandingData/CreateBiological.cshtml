@@ -14,7 +14,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateBiological">
+        <form asp-action="CreateBiological" >
             @if ((bool)ViewData["WasInvalid"])
             {
                 <p>@ViewData["InvalidMessage"]</p>
@@ -32,7 +32,7 @@
             <div class="form-group" id="text">
                 <label asp-for="BiologicalData.Age" class="control-label"></label>
                 @*<input asp-for="BiologicalData.Age" class="form-control" />*@
-                @Html.DropDownList("BiologicalData.Age", new SelectList(ViewBag.Age, "Id", "Name"))
+                @Html.DropDownList("BiologicalData.Age", (SelectList)ViewBag.Age, "Please select", new { @class = "form-control" })
                 <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
             </div>
 
@@ -45,8 +45,8 @@
             <div class="form-group">
                 <label asp-for="BiologicalData.Sex" class="control-label"></label>
                 @*<input asp-for="BiologicalData.Sex" class="form-control" />*@
-                @Html.DropDownList("BiologicalData.Sex", new SelectList(ViewBag.Sex, "Code", "Name"))
-                <span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
+                @Html.DropDownList("BiologicalData.Sex", (SelectList)ViewBag.Sex, "Please select", new { @class = "form-control" })
+                < span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BiologicalData.HowSexed" class="control-label"></label>

@@ -691,5 +691,6 @@ namespace BandTheBirdProj.Data
         public DbSet<FlightMolt> FlightMolt { get; set; }
         public DbSet<FlightWear> FlightWear { get; set; }
         public DbSet<BandSize> BandSize { get; set; }
+        public DbSet<BandTheBirdProj.Models.Images> Images { get; set; }
     }
 }

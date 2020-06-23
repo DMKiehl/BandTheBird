@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -9,10 +10,14 @@ using BandTheBirdProj.Contracts;
 using BandTheBirdProj.Data;
 using BandTheBirdProj.Models;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web;
+using Microsoft.AspNetCore.Hosting;
+using DocumentFormat.OpenXml.EMMA;
 
 namespace BandTheBirdProj.Controllers
 {
@@ -21,13 +26,15 @@ namespace BandTheBirdProj.Controllers
         private readonly ApplicationDbContext _context;
         private IAPIService _apiCalls;
         public DateTime today;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public BandingDataController(ApplicationDbContext context, IAPIService apiCalls)
+        public BandingDataController(ApplicationDbContext context, IAPIService apiCalls, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             _apiCalls = apiCalls;
             today = DateTime.Today;
-            
+            webHostEnvironment = hostEnvironment;
+
         }
         // GET: BandingData
         public ActionResult Index()
@@ -42,14 +49,14 @@ namespace BandTheBirdProj.Controllers
         }
 
         // GET: BandingData/Create
-        public ActionResult CreateBird()
+        public async Task<IActionResult> CreateBird()
         {
             var items = _context.ResearchSite.ToList();
             if (items != null)
             {
                 ViewBag.Sites = items;
             }
-            
+
             var type = _context.BandType;
             if (type != null)
             {
@@ -57,10 +64,10 @@ namespace BandTheBirdProj.Controllers
             }
 
             ViewBag.Size = _context.BandSize;
-            
-
+            var species = await _apiCalls.GetSpecies();
+            ViewBag.Species = species;
             return View();
-            
+
         }
 
         // POST: BandingData/Create
@@ -97,7 +104,6 @@ namespace BandTheBirdProj.Controllers
             var bird = species.Where(s => s.alphaCode == data.AlphaCode).SingleOrDefault();
             viewModel.Species = bird;
 
-
             ViewBag.Age = _context.Age;
             ViewBag.Sex = _context.Sex;
             ViewBag.How = _context.HowAgeSex;
@@ -122,15 +128,15 @@ namespace BandTheBirdProj.Controllers
 
             if (validate == false || viewModel.VerifyData == true)
             {
-                if(viewModel.BiologicalData.Skull == 10)
+                if (viewModel.BiologicalData.Skull == 10)
                 {
                     viewModel.BiologicalData.Skull = 0;
                 }
-                if(viewModel.BiologicalData.Age == 3)
+                if (viewModel.BiologicalData.Age == 3)
                 {
                     viewModel.BiologicalData.Age = 0;
                 }
-                if(viewModel.BiologicalData.CloacalProtuberance == 4)
+                if (viewModel.BiologicalData.CloacalProtuberance == 4)
                 {
                     viewModel.BiologicalData.CloacalProtuberance = 0;
                 }
@@ -139,13 +145,12 @@ namespace BandTheBirdProj.Controllers
                 return RedirectToAction("Index");
             }
 
-
             ViewData["wasInvalid"] = true;
-            ViewData["InvalidMessage"] = "One or more measurements are outside of the normal range for this species. Please review wing, tail and exposed culmen measurements. For " + viewModel.Species.alphaCode + " the wing chord should be between " + viewModel.Species.minWing +  " - " + viewModel.Species.maxWing + ". Tail should be between " + 
+            ViewData["InvalidMessage"] = "One or more measurements are outside of the normal range for this species. Please review wing, tail and exposed culmen measurements. For " + viewModel.Species.alphaCode + " the wing chord should be between " + viewModel.Species.minWing + " - " + viewModel.Species.maxWing + ". Tail should be between " +
                 viewModel.Species.minTail + " - " + viewModel.Species.maxTail + ". Culmen should be between " + viewModel.Species.minCulmen + " - " + viewModel.Species.maxCulmen + ". If measurements are correct but outside of the normal range please check the box below to verify that the data is correct.";
-           
-            ViewBag.Age = _context.Age;
-            ViewBag.Sex = _context.Sex;
+            //ViewBag.Species = new SelectList(species, "alphaCode", "alphaCode");
+            ViewBag.Age = new SelectList(_context.Age, "Id", "Name");
+            ViewBag.Sex = new SelectList(_context.Sex, "Code", "Name");
             ViewBag.How = _context.HowAgeSex;
             ViewBag.Skull = _context.Skull;
             ViewBag.ClP = _context.CP;
@@ -156,8 +161,8 @@ namespace BandTheBirdProj.Controllers
             ViewBag.FW = _context.FlightWear;
 
             return View(viewModel);
-           
-            
+
+
 
 
         }
@@ -180,16 +185,15 @@ namespace BandTheBirdProj.Controllers
             {
                 return false;
             }
-            
+
         }
 
         public ActionResult AddEnvironment()
         {
-            var items = _context.ResearchSite.ToList();
-            if (items != null)
-            {
-                ViewBag.Sites = items;
-            }
+            var items = _context.ResearchSite;
+            ViewBag.Sites = new SelectList(items, "SiteId", "SiteName");
+
+
             return View();
         }
 
@@ -202,7 +206,7 @@ namespace BandTheBirdProj.Controllers
 
             _context.Environmental.Add(environmental);
             _context.SaveChanges();
-            
+
             return RedirectToAction("Index", "Researchers");
         }
 
@@ -221,18 +225,16 @@ namespace BandTheBirdProj.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var researcherBirds = birds.Where(b => b.BandingData.IdentityUserId == userId);
 
-            if(!String.IsNullOrEmpty(AlphaSearch))
+            if (!String.IsNullOrEmpty(AlphaSearch))
             {
                 researcherBirds = researcherBirds.Where(r => r.BandingData.AlphaCode.Contains(AlphaSearch));
             }
 
-            if(!String.IsNullOrEmpty(BandSearch))
+            if (!String.IsNullOrEmpty(BandSearch))
             {
                 researcherBirds = researcherBirds.Where(r => r.BandingData.BandSize.Contains(BandSearch));
             }
 
-            
-            
             return View(researcherBirds);
 
         }
@@ -250,7 +252,6 @@ namespace BandTheBirdProj.Controllers
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var researcherBirds = birds.Where(b => b.BandingData.IdentityUserId == userId).ToList();
-            
 
             return researcherBirds;
 
@@ -350,7 +351,7 @@ namespace BandTheBirdProj.Controllers
                         content, "application/vnd.openxmlformats-officedocument.spreadsheet.sheet", "data.xlsx");
                 }
             }
-            
+
         }
 
         public ActionResult ExportTodayData()
@@ -434,7 +435,8 @@ namespace BandTheBirdProj.Controllers
 
         public ActionResult ExportEnvironment()
         {
-            ViewBag.Sites = _context.ResearchSite;
+            var researchSites= _context.ResearchSite;
+            ViewBag.Sites = new SelectList(researchSites, "SiteName", "SiteName");
 
             return View();
 
@@ -482,4 +484,71 @@ namespace BandTheBirdProj.Controllers
                 }
 
             }
+        }
+
+        public async Task<IActionResult> UploadImage()
+        {
+            var birds = _context.BandingData;
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var researcherBirds = birds.Where(b => b.IdentityUserId == userId).ToList();
+            ViewBag.Birds = new SelectList(researcherBirds, "BandNumber", "BandNumber");
+
+            var species = await _apiCalls.GetSpecies();
+            ViewBag.Species = new SelectList(species, "alphaCode", "alphaCode");
+            ViewData["NotSuccess"] = false;
+            return View();
+        }
+
+        [HttpPost, ActionName("UploadImage")]
+
+        public ActionResult UploadImage(ImageViewModel viewModel)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var researcher = _context.Researcher.Where(b => b.IdentityUserId == userId).SingleOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = UploadedFile(viewModel);
+
+                Images image = new Images
+                {
+                    AlphaCode = viewModel.AlphaCode,
+                    BandNumber = viewModel.BandNumber,
+                    BirdImage = uniqueFileName,
+                    IdentityUserId = researcher.IdentityUserId,
+                };
+
+                _context.Add(image);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewData["NotSuccess"] = true;
+            ViewData["InvalidUpload"] = "Upload not a Success, please try again.";
+            return View(viewModel);
+
+           
+        }
+
+        public string UploadedFile(ImageViewModel viewModel)
+        {
+            string uniqueFileName = null;
+
+            if (viewModel.BirdImage != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + viewModel.BirdImage.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    viewModel.BirdImage.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
+        }
+
+
+    }    
 }

@@ -1,0 +1,59 @@
+﻿@model BandTheBirdProj.Models.ImageViewModel
+
+@{
+    ViewData["Title"] = "UploadImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>UploadImage</h1>
+
+<h4>Images</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UploadImage" enctype="multipart/form-data">
+            @if ((bool)ViewData["NotSuccess"])
+            {
+                <p>@ViewData["InvalidUpload"]</p>
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AlphaCode" class="control-label"></label>
+                @*<input asp-for="AlphaCode" class="form-control" />*@
+                @Html.DropDownList("AlphaCode", (SelectList)ViewBag.Species, "Please select", new {@class = "form-control"})
+                <span asp-validation-for="AlphaCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BandNumber" class="control-label"></label>
+                @*<input asp-for="BandNumber" class="form-control" />*@
+                @Html.DropDownList("BandNumber", (SelectList)ViewBag.Birds, "Please select", new {@class = "form-control"})
+                <span asp-validation-for="BandNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirdImage" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="BirdImage" type="file" class="custom-file-input" id="customFile" />
+                    <label class="custom-file-label" for="customFile">Choose File</label>
+                </div>
+                <span asp-validation-for="BirdImage" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+   
+    $(".custom-file-input").on("change", function () {
+      
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
