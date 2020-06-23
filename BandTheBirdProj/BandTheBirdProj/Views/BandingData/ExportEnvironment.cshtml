@@ -1,0 +1,32 @@
+﻿@model BandTheBirdProj.Models.ResearchSite
+
+@{
+    ViewData["Title"] = "ExportEnvironment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Export Environmental Data</h1>
+
+<h4>Please choose a research site.</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ExportEnvironment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SiteName" class="control-label"></label>
+                @Html.DropDownList("SiteName", new SelectList(ViewBag.Sites, "SiteName", "SiteName"))
+                <input asp-for="SiteName" class="form-control" />
+                <span asp-validation-for="SiteName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Select" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

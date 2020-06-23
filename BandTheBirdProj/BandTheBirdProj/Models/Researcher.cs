@@ -18,7 +18,7 @@ namespace BandTheBirdProj.Models
         public string ResearchSiteAddress { get; set; }
         public string ResearchSiteCity { get; set; }
         public string ResearchSiteState { get; set; }
-        public int ResearchSiteZip { get; set; }
+        public string ResearchSiteZip { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

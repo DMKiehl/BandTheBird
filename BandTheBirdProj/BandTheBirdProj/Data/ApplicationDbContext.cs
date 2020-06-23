@@ -664,6 +664,13 @@ namespace BandTheBirdProj.Data
                  Id = 7,
                  Size = "3",
              });
+            builder.Entity<BandSize>()
+                .HasData(
+                new BandSize
+                {
+                    Id = 8,
+                    Size = "R"
+                });
         }
 
         public DbSet<Researcher> Researcher { get; set; }

@@ -143,6 +143,17 @@ namespace BandTheBirdProj.Controllers
             ViewData["wasInvalid"] = true;
             ViewData["InvalidMessage"] = "One or more measurements are outside of the normal range for this species. Please review wing, tail and exposed culmen measurements. For " + viewModel.Species.alphaCode + " the wing chord should be between " + viewModel.Species.minWing +  " - " + viewModel.Species.maxWing + ". Tail should be between " + 
                 viewModel.Species.minTail + " - " + viewModel.Species.maxTail + ". Culmen should be between " + viewModel.Species.minCulmen + " - " + viewModel.Species.maxCulmen + ". If measurements are correct but outside of the normal range please check the box below to verify that the data is correct.";
+           
+            ViewBag.Age = _context.Age;
+            ViewBag.Sex = _context.Sex;
+            ViewBag.How = _context.HowAgeSex;
+            ViewBag.Skull = _context.Skull;
+            ViewBag.ClP = _context.CP;
+            ViewBag.BrP = _context.BP;
+            ViewBag.fat = _context.Fat;
+            ViewBag.BM = _context.BodyMolt;
+            ViewBag.FM = _context.FlightMolt;
+            ViewBag.FW = _context.FlightWear;
 
             return View(viewModel);
            
@@ -421,5 +432,54 @@ namespace BandTheBirdProj.Controllers
 
         }
 
-    }
+        public ActionResult ExportEnvironment()
+        {
+            ViewBag.Sites = _context.ResearchSite;
+
+            return View();
+
+        }
+
+        [HttpPost, ActionName("ExportEnvironment")]
+
+        public ActionResult ExportEnvironment(ResearchSite research)
+        {
+            var sites = _context.Environmental.Where(e => e.SiteName == research.SiteName).ToList();
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("SiteInformation");
+                var currentRow = 1;
+                worksheet.Cell(currentRow, 1).Value = "Research Date";
+                worksheet.Cell(currentRow, 2).Value = "Opening Temperature";
+                worksheet.Cell(currentRow, 3).Value = "Closing Temperature";
+                worksheet.Cell(currentRow, 4).Value = "Cloud Cover";
+                worksheet.Cell(currentRow, 5).Value = "Precipitation";
+                worksheet.Cell(currentRow, 6).Value = "Open Time";
+                worksheet.Cell(currentRow, 7).Value = "Close Time";
+                worksheet.Cell(currentRow, 8).Value = "Site Name";
+
+                foreach (var site in sites)
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = site.ResearchDate;
+                    worksheet.Cell(currentRow, 2).Value = site.OpenTemp;
+                    worksheet.Cell(currentRow, 3).Value = site.CloseTemp;
+                    worksheet.Cell(currentRow, 4).Value = site.CloudCover;
+                    worksheet.Cell(currentRow, 5).Value = site.Precipitation;
+                    worksheet.Cell(currentRow, 6).Value = site.OpenTime;
+                    worksheet.Cell(currentRow, 7).Value = site.CloseTime;
+                    worksheet.Cell(currentRow, 8).Value = site.SiteName;
+
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+
+                    return File(
+                        content, "application/vnd.openxmlformats-officedocument.spreadsheet.sheet", "SiteInformation.xlsx");
+                }
+
+            }
 }

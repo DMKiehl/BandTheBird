@@ -9,7 +9,7 @@ namespace BandTheBirdProj.Contracts
 {
     public interface IAPIService
     {
-        Task<CurrentWeather> GetCurrentWeather(int zip);
+        Task<CurrentWeather> GetCurrentWeather(string zip);
 
         Task<GeoCode> GoogleGeocoding(string address);
 
