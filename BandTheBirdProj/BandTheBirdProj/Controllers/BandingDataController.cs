@@ -56,6 +56,7 @@ namespace BandTheBirdProj.Controllers
                 ViewBag.Type = type;
             }
 
+            ViewBag.Size = _context.BandSize;
             
 
             return View();
@@ -102,6 +103,11 @@ namespace BandTheBirdProj.Controllers
             ViewBag.How = _context.HowAgeSex;
             ViewBag.Skull = _context.Skull;
             ViewBag.ClP = _context.CP;
+            ViewBag.BrP = _context.BP;
+            ViewBag.fat = _context.Fat;
+            ViewBag.BM = _context.BodyMolt;
+            ViewBag.FM = _context.FlightMolt;
+            ViewBag.FW = _context.FlightWear;
 
             ViewData["wasInvalid"] = false;
             return View(viewModel);

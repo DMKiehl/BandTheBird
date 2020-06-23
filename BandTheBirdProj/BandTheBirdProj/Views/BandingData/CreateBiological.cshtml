@@ -59,14 +59,15 @@
             <div class="form-group" id="cp" style="display: none">
                 <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
                 @*<input asp-for="BiologicalData.CloacalProtuberance" class="form-control" />*@
-                @Html.DropDownList("BiologicalData.Skull", new SelectList(ViewBag.Skull, "Id", "Name"))
+                @Html.DropDownList("BiologicalData.CloacalProtuberance", new SelectList(ViewBag.ClP, "Id", "Name"))
                 <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
             </div>
             <span>Enter BP data?</span>
             <input type="button" value="Yes" name="btnBP" /><br><br />
             <div class="form-group" id="bp" style="display: none">
                 <label asp-for="BiologicalData.BroodPatch" class="control-label"></label>
-                <input asp-for="BiologicalData.BroodPatch" class="form-control" />
+                @*<input asp-for="BiologicalData.BroodPatch" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.BroodPatch", new SelectList(ViewBag.BrP, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.BroodPatch" class="text-danger"></span>
             </div>
             <span>Enter Skull data?</span>
@@ -79,28 +80,32 @@
             </div>
             <div class="form-group">
                 <label asp-for="BiologicalData.Fat" class="control-label"></label>
-                <input asp-for="BiologicalData.Fat" class="form-control" />
+                @*<input asp-for="BiologicalData.Fat" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.Fat", new SelectList(ViewBag.fat, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.Fat" class="text-danger"></span>
             </div>
             <span>Enter Body Molt data?</span>
             <input type="button" value="Yes" name="btnbmolt" /><br><br />
             <div class="form-group" id="bodymolt" style="display: none">
                 <label asp-for="BiologicalData.BodyMolt" class="control-label"></label>
-                <input asp-for="BiologicalData.BodyMolt" class="form-control" />
+                @*<input asp-for="BiologicalData.BodyMolt" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.BodyMolt", new SelectList(ViewBag.BM, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.BodyMolt" class="text-danger"></span>
             </div>
             <span>Enter Flight Feather Molt data?</span>
             <input type="button" value="Yes" name="btnffmolt" /><br><br />
             <div class="form-group" id="flightmolt" style="display: none">
                 <label asp-for="BiologicalData.FlightFeatherMolt" class="control-label"></label>
-                <input asp-for="BiologicalData.FlightFeatherMolt" class="form-control" />
+                @*<input asp-for="BiologicalData.FlightFeatherMolt" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.FlightFeatherMolt", new SelectList(ViewBag.FM, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.FlightFeatherMolt" class="text-danger"></span>
             </div>
             <span>Enter Flight Feather Wear data?</span>
             <input type="button" value="Yes" name="btnffwear" /><br><br />
             <div class="form-group" id="flightwear" style="display: none">
                 <label asp-for="BiologicalData.FlightFeatherWear" class="control-label"></label>
-                <input asp-for="BiologicalData.FlightFeatherWear" class="form-control" />
+                @*<input asp-for="BiologicalData.FlightFeatherWear" class="form-control" />*@
+                @Html.DropDownList("BiologicalData.FlightFeatherWear", new SelectList(ViewBag.FW, "Code", "Name"))
                 <span asp-validation-for="BiologicalData.FlightFeatherWear" class="text-danger"></span>
             </div>
             <div class="form-group">

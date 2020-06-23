@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BandTheBirdProj.Models;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -381,6 +382,288 @@ namespace BandTheBirdProj.Data
                 Id = 4,
                 Name = "None",
             });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 1,
+                  Code = 0,
+                  Name = "None",
+              });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 2,
+                  Code = 1,
+                  Name = "Smooth",
+              });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 3,
+                  Code = 2,
+                  Name = "Vascular",
+              });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 4,
+                  Code = 3,
+                  Name = "Heavy",
+              });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 5,
+                  Code = 4,
+                  Name = "Wrinkled",
+              });
+            builder.Entity<BP>()
+              .HasData(
+              new BP
+              {
+                  Id = 6,
+                  Code = 5,
+                  Name = "Molting",
+              });
+            builder.Entity<Fat>()
+             .HasData(
+             new Fat
+             {
+                 Id = 1,
+                 Code = 0,
+                 Name = "None",
+             });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 2,
+                    Code = 1,
+                    Name = "Trace",
+                });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 3,
+                    Code = 2,
+                    Name = "Light",
+                });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 4,
+                    Code = 3,
+                    Name = "Half",
+                });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 5,
+                    Code = 4,
+                    Name = "Filled",
+                });
+            builder.Entity<Fat>()
+                 .HasData(
+                 new Fat
+                 {
+                     Id = 6,
+                     Code = 5,
+                     Name = "Bulging",
+                 });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 7,
+                    Code = 6,
+                    Name = "Gr. Bulging",
+                });
+            builder.Entity<Fat>()
+                .HasData(
+                new Fat
+                {
+                    Id = 8,
+                    Code = 7,
+                    Name = "Very Excessive",
+                });
+            builder.Entity<BodyMolt>()
+              .HasData(
+              new BodyMolt
+              {
+                  Id = 1,
+                  Code = 0,
+                  Name = "None",
+              });
+            builder.Entity<BodyMolt>()
+              .HasData(
+              new BodyMolt
+              {
+                  Id = 2,
+                  Code = 1,
+                  Name = "Trace",
+              });
+            builder.Entity<BodyMolt>()
+                .HasData(
+                new BodyMolt
+                {
+                    Id = 3,
+                    Code = 2,
+                    Name = "Light",
+                });
+            builder.Entity<BodyMolt>()
+               .HasData(
+               new BodyMolt
+               {
+                   Id = 4,
+                   Code = 3,
+                   Name = "Medium",
+               });
+            builder.Entity<BodyMolt>()
+               .HasData(
+               new BodyMolt
+               {
+                   Id = 5,
+                   Code = 4,
+                   Name = "Heavy",
+               });
+            builder.Entity<FlightMolt>()
+             .HasData(
+             new FlightMolt
+             {
+                 Id = 1,
+                 Code = "N",
+                 Name = "None",
+             });
+            builder.Entity<FlightMolt>()
+                .HasData(
+                new FlightMolt
+                {
+                    Id = 2,
+                    Code = "A",
+                    Name = "Adventitious",
+                });
+            builder.Entity<FlightMolt>()
+              .HasData(
+              new FlightMolt
+              {
+                  Id = 3,
+                  Code = "S",
+                  Name = "Symmetric",
+              });
+            builder.Entity<FlightMolt>()
+              .HasData(
+              new FlightMolt
+              {
+                  Id = 4,
+                  Code = "J",
+                  Name = "Juvenile Growth",
+              });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                  Id = 1,
+                  Code = 0,
+                  Name = "None",
+                 });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                    Id = 2,
+                    Code = 1,
+                    Name = "Slight",
+                });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                    Id = 3,
+                    Code = 2,
+                    Name = "Light",
+                });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                    Id = 4,
+                    Code = 3,
+                    Name = "Moderate",
+                });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                    Id = 5,
+                    Code = 4,
+                    Name = "Heavy",
+                });
+            builder.Entity<FlightWear>()
+                .HasData(
+                new FlightWear
+                {
+                    Id = 6,
+                    Code = 5,
+                    Name = "Excessive",
+                });
+            builder.Entity<BandSize>()
+               .HasData(
+               new BandSize
+               {
+                   Id = 1,
+                   Size = "0A",
+                   
+               });
+            builder.Entity<BandSize>()
+               .HasData(
+               new BandSize
+               {
+                   Id = 2,
+                   Size = "0",
+               });
+            builder.Entity<BandSize>()
+                .HasData(
+                new BandSize
+                {
+                    Id = 3,
+                    Size = "1",
+                });
+            builder.Entity<BandSize>()
+                .HasData(
+                new BandSize
+                {
+                    Id = 4,
+                    Size = "1B",
+                });
+            builder.Entity<BandSize>()
+             .HasData(
+             new BandSize
+             {
+                 Id = 5,
+                 Size = "1A",
+             });
+            builder.Entity<BandSize>()
+             .HasData(
+             new BandSize
+             {
+                 Id = 6,
+                 Size = "2",
+             });
+            builder.Entity<BandSize>()
+             .HasData(
+             new BandSize
+             {
+                 Id = 7,
+                 Size = "3",
+             });
         }
 
         public DbSet<Researcher> Researcher { get; set; }
@@ -395,5 +678,11 @@ namespace BandTheBirdProj.Data
         public DbSet<HowAgeSex> HowAgeSex { get; set; }
         public DbSet<Skull> Skull { get; set; }
         public DbSet<CP> CP { get; set; }
+        public DbSet<BP> BP { get; set; }
+        public DbSet<Fat> Fat { get; set; }
+        public DbSet<BodyMolt> BodyMolt { get; set; }
+        public DbSet<FlightMolt> FlightMolt { get; set; }
+        public DbSet<FlightWear> FlightWear { get; set; }
+        public DbSet<BandSize> BandSize { get; set; }
     }
 }
