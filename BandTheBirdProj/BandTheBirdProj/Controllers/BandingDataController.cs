@@ -51,21 +51,15 @@ namespace BandTheBirdProj.Controllers
         // GET: BandingData/Create
         public async Task<IActionResult> CreateBird()
         {
-            var items = _context.ResearchSite.ToList();
-            if (items != null)
-            {
-                ViewBag.Sites = items;
-            }
-
+            //ViewBag.Species = new SelectList(species, "alphaCode", "alphaCode");
+            var items = _context.ResearchSite;
+            ViewBag.Sites = new SelectList(items, "SiteId", "SiteName");
             var type = _context.BandType;
-            if (type != null)
-            {
-                ViewBag.Type = type;
-            }
-
-            ViewBag.Size = _context.BandSize;
+            ViewBag.Type = new SelectList(type, "Code", "Name");
+            ViewBag.Size = new SelectList(_context.BandSize, "Size", "Size");
             var species = await _apiCalls.GetSpecies();
-            ViewBag.Species = species;
+            ViewBag.Species = new SelectList(species, "alphaCode", "alphaCode");
+            ViewBag.Names = new SelectList(species, "speciesName", "speciesName");
             return View();
 
         }
@@ -104,16 +98,16 @@ namespace BandTheBirdProj.Controllers
             var bird = species.Where(s => s.alphaCode == data.AlphaCode).SingleOrDefault();
             viewModel.Species = bird;
 
-            ViewBag.Age = _context.Age;
-            ViewBag.Sex = _context.Sex;
-            ViewBag.How = _context.HowAgeSex;
-            ViewBag.Skull = _context.Skull;
-            ViewBag.ClP = _context.CP;
-            ViewBag.BrP = _context.BP;
-            ViewBag.fat = _context.Fat;
-            ViewBag.BM = _context.BodyMolt;
-            ViewBag.FM = _context.FlightMolt;
-            ViewBag.FW = _context.FlightWear;
+            ViewBag.Age = new SelectList(_context.Age, "Id", "Name");
+            ViewBag.Sex = new SelectList(_context.Sex, "Code", "Name");
+            ViewBag.How = new SelectList(_context.HowAgeSex, "Code", "Name");
+            ViewBag.Skull = new SelectList(_context.Skull, "Id", "Name");
+            ViewBag.ClP = new SelectList(_context.CP, "Id", "Name");
+            ViewBag.BrP = new SelectList(_context.BP, "Code", "Name");
+            ViewBag.fat = new SelectList(_context.Fat, "Code", "Name");
+            ViewBag.BM = new SelectList(_context.BodyMolt, "Code", "Name");
+            ViewBag.FM = new SelectList(_context.FlightMolt, "Code", "Name");
+            ViewBag.FW = new SelectList(_context.FlightWear, "Code", "Name");
 
             ViewData["wasInvalid"] = false;
             return View(viewModel);
@@ -148,17 +142,17 @@ namespace BandTheBirdProj.Controllers
             ViewData["wasInvalid"] = true;
             ViewData["InvalidMessage"] = "One or more measurements are outside of the normal range for this species. Please review wing, tail and exposed culmen measurements. For " + viewModel.Species.alphaCode + " the wing chord should be between " + viewModel.Species.minWing + " - " + viewModel.Species.maxWing + ". Tail should be between " +
                 viewModel.Species.minTail + " - " + viewModel.Species.maxTail + ". Culmen should be between " + viewModel.Species.minCulmen + " - " + viewModel.Species.maxCulmen + ". If measurements are correct but outside of the normal range please check the box below to verify that the data is correct.";
-            //ViewBag.Species = new SelectList(species, "alphaCode", "alphaCode");
+          
             ViewBag.Age = new SelectList(_context.Age, "Id", "Name");
             ViewBag.Sex = new SelectList(_context.Sex, "Code", "Name");
-            ViewBag.How = _context.HowAgeSex;
-            ViewBag.Skull = _context.Skull;
-            ViewBag.ClP = _context.CP;
-            ViewBag.BrP = _context.BP;
-            ViewBag.fat = _context.Fat;
-            ViewBag.BM = _context.BodyMolt;
-            ViewBag.FM = _context.FlightMolt;
-            ViewBag.FW = _context.FlightWear;
+            ViewBag.How = new SelectList(_context.HowAgeSex, "Code", "Name");
+            ViewBag.Skull = new SelectList(_context.Skull, "Id", "Name");
+            ViewBag.ClP = new SelectList(_context.CP, "Id", "Name");
+            ViewBag.BrP = new SelectList(_context.BP, "Code", "Name");
+            ViewBag.fat = new SelectList(_context.Fat, "Code", "Name");
+            ViewBag.BM = new SelectList(_context.BodyMolt, "Code", "Name");
+            ViewBag.FM = new SelectList(_context.FlightMolt, "Code", "Name");
+            ViewBag.FW = new SelectList(_context.FlightWear, "Code", "Name");
 
             return View(viewModel);
 
