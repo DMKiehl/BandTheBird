@@ -4,9 +4,13 @@
     ViewData["Title"] = "AddSite";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <body>
-        <h1>Add a Research Site</h1>
-
+    <body style="background-color: lightgray">
+        <h1 style="text-align: center; color: black">Add a Research Site</h1>
+        <p>
+            <div>
+                <a asp-action="Index">Home</a>
+            </div>
+        </p>
         <hr />
         <div class="row">
             <div class="col-md-4">
@@ -45,11 +49,18 @@
                     </div>
                 </form>
             </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-6">
+                <div style="text-align: left">
+                    <img src="~/SiteImages/chickadee.jpg" width="600" height="800" />
+                </div>
+
+            </div>
         </div>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+        
 
     </body>
 

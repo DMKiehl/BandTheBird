@@ -4,52 +4,47 @@
     ViewData["Title"] = "EditSite";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <body style="background-color: lightgray">
+        <h1>Edit Research Site</h1>
 
-<h1>EditSite</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="EditSite">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="SiteId" />
+                    <div class="form-group">
+                        <label asp-for="SiteName" class="control-label"></label>
+                        <input asp-for="SiteName" class="form-control" />
+                        <span asp-validation-for="SiteName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SiteStreetAddress" class="control-label"></label>
+                        <input asp-for="SiteStreetAddress" class="form-control" />
+                        <span asp-validation-for="SiteStreetAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SiteCity" class="control-label"></label>
+                        <input asp-for="SiteCity" class="form-control" />
+                        <span asp-validation-for="SiteCity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SiteState" class="control-label"></label>
+                        <input asp-for="SiteState" class="form-control" />
+                        <span asp-validation-for="SiteState" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SiteZip" class="control-label"></label>
+                        <input asp-for="SiteZip" class="form-control" />
+                        <span asp-validation-for="SiteZip" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for-"Latitude" />
+                    <input type="hidden" asp-for-"Longitude" />
 
-<h4>ResearchSite</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditSite">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="SiteId" />
-            <div class="form-group">
-                <label asp-for="SiteName" class="control-label"></label>
-                <input asp-for="SiteName" class="form-control" />
-                <span asp-validation-for="SiteName" class="text-danger"></span>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="SiteStreetAddress" class="control-label"></label>
-                <input asp-for="SiteStreetAddress" class="form-control" />
-                <span asp-validation-for="SiteStreetAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SiteCity" class="control-label"></label>
-                <input asp-for="SiteCity" class="form-control" />
-                <span asp-validation-for="SiteCity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SiteState" class="control-label"></label>
-                <input asp-for="SiteState" class="form-control" />
-                <span asp-validation-for="SiteState" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SiteZip" class="control-label"></label>
-                <input asp-for="SiteZip" class="form-control" />
-                <span asp-validation-for="SiteZip" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for-"Latitude" />
-            <input type="hidden" asp-for-"Longitude" />
-           
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+        </div> 
+    </body>

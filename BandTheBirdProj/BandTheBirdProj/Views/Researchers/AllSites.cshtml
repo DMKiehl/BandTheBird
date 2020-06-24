@@ -4,67 +4,72 @@
     ViewData["Title"] = "AllSites";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <body style="background-color: lightgray">
+        <h1 style="text-align: center">All Research Sites</h1>
 
-<h1>AllSites</h1>
+        <p>
+            <a asp-action="AddSite">Add New Research Site</a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteStreetAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteState)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteZip)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Latitude)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Longitude)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteStreetAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteState)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteZip)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td>
+                            <a asp-action="EditSite" asp-route-id="@item.SiteId">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SiteName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SiteStreetAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SiteCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SiteState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SiteZip)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SiteName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SiteStreetAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SiteCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SiteState)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SiteZip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                <a asp-action="EditSite" asp-route-id="@item.SiteId">Edit</a> 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+    

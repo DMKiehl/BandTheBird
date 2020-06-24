@@ -4,66 +4,73 @@
     ViewData["Title"] = "AddEnvironment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <body style="background-color: lightgray">
+        <h1 style="text-align: center; color: black">Daily Environmental Data</h1>
+        <div>
+            <a asp-action="Index">Banding Home</a>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddEnvironment">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ResearchDate" class="control-label"></label>
+                        <input asp-for="ResearchDate" class="form-control" />
+                        <span asp-validation-for="ResearchDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OpenTemp" class="control-label"></label>
+                        <input asp-for="OpenTemp" class="form-control" />
+                        <span asp-validation-for="OpenTemp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CloseTemp" class="control-label"></label>
+                        <input asp-for="CloseTemp" class="form-control" />
+                        <span asp-validation-for="CloseTemp" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CloudCover" class="control-label"></label>
+                        <input asp-for="CloudCover" class="form-control" />
+                        <span asp-validation-for="CloudCover" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Precipitation" class="control-label"></label>
+                        <input asp-for="Precipitation" class="form-control" />
+                        <span asp-validation-for="Precipitation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OpenTime" class="control-label"></label>
+                        <input asp-for="OpenTime" class="form-control" />
+                        <span asp-validation-for="OpenTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CloseTime" class="control-label"></label>
+                        <input asp-for="CloseTime" class="form-control" />
+                        <span asp-validation-for="CloseTime" class="text-danger"></span>
+                    </div>
+                    @*<input type="hidden" asp-for-"SiteId" />*@
 
-<h1>AddEnvironment</h1>
+                    <div class="form-group">
+                        <label asp-for="SiteId" class="control-label"></label>
+                        @Html.DropDownList("SiteId", (SelectList)ViewBag.Sites, "Please select", new { @class = "form-control" })
+                        @*<select asp-for="SiteName" class="form-control" asp-items="ViewBag.SiteName"></select>*@
+                        <span asp-validation-for="SiteId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2">
 
-<h4>Environmental</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddEnvironment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ResearchDate" class="control-label"></label>
-                <input asp-for="ResearchDate" class="form-control" />
-                <span asp-validation-for="ResearchDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="OpenTemp" class="control-label"></label>
-                <input asp-for="OpenTemp" class="form-control" />
-                <span asp-validation-for="OpenTemp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CloseTemp" class="control-label"></label>
-                <input asp-for="CloseTemp" class="form-control" />
-                <span asp-validation-for="CloseTemp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CloudCover" class="control-label"></label>
-                <input asp-for="CloudCover" class="form-control" />
-                <span asp-validation-for="CloudCover" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Precipitation" class="control-label"></label>
-                <input asp-for="Precipitation" class="form-control" />
-                <span asp-validation-for="Precipitation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OpenTime" class="control-label"></label>
-                <input asp-for="OpenTime" class="form-control" />
-                <span asp-validation-for="OpenTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CloseTime" class="control-label"></label>
-                <input asp-for="CloseTime" class="form-control" />
-                <span asp-validation-for="CloseTime" class="text-danger"></span>
-            </div>
-            @*<input type="hidden" asp-for-"SiteId" />*@
-            
-            <div class="form-group">
-                <label asp-for="SiteId" class="control-label"></label>
-                @Html.DropDownList("SiteId", (SelectList)ViewBag.Sites, "Please select", new { @class = "form-control" })
-                @*<select asp-for="SiteName" class="form-control" asp-items="ViewBag.SiteName"></select>*@
-                <span asp-validation-for="SiteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+            <div class="col-md-6">
+                <div style="text-align: left">
+                    <img src="~/SiteImages/birdbluesky.jpg" width="600" height="800" />
+                </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+            </div>
+        </div>
 
+    </body>

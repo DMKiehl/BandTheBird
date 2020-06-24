@@ -4,237 +4,247 @@
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
 
-</style>
  
+    <body style="background-color: lightgray">
+        <h1 style="text-align: center; color: black">BiologicalData</h1>
+        <hr />
+        <div>
+            <a asp-action="Index">Banding Home</a>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateBiological">
+                    @if ((bool)ViewData["WasInvalid"])
+                    {
+                        <p>@ViewData["InvalidMessage"]</p>
 
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VerifyData" /> @Html.DisplayNameFor(model => model.VerifyData)
+                            </label>
 
-<h4>BiologicalData</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateBiological" >
-            @if ((bool)ViewData["WasInvalid"])
-            {
-                <p>@ViewData["InvalidMessage"]</p>
+                        </div>
 
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="VerifyData" /> @Html.DisplayNameFor(model => model.VerifyData)
-                    </label>
+                    }
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <div class="form-group" id="text">
+                        <label asp-for="BiologicalData.Age" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.Age", (SelectList)ViewBag.Age, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group" id="text">
+                        <label asp-for="BiologicalData.HowAged" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.HowAged", (SelectList)ViewBag.How, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.HowAged" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.Sex" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.Sex", (SelectList)ViewBag.Sex, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.HowSexed" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.HowSexed", (SelectList)ViewBag.How, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.HowSexed" class="text-danger"></span>
+                    </div>
+                    <span>Enter CP data?</span>
+                    <input type="button" value="Yes" name="btnCP" /><br><br />
+                    <div class="form-group" id="cp" style="display: none">
+                        <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.CloacalProtuberance", (SelectList)ViewBag.ClP, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
+                    </div>
+                    <span>Enter BP data?</span>
+                    <input type="button" value="Yes" name="btnBP" /><br><br />
+                    <div class="form-group" id="bp" style="display: none">
+                        <label asp-for="BiologicalData.BroodPatch" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.BroodPatch", (SelectList)ViewBag.BrP, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.BroodPatch" class="text-danger"></span>
+                    </div>
+                    <span>Enter Skull data?</span>
+                    <input type="button" value="Yes" name="btnskull" /><br><br />
+                    <div class="form-group" id="skull" style="display: none">
+                        <label asp-for="BiologicalData.Skull" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.Skull", (SelectList)ViewBag.Skull, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.Skull" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.Fat" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.Fat", (SelectList)ViewBag.fat, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.Fat" class="text-danger"></span>
+                    </div>
+                    <span>Enter Body Molt data?</span>
+                    <input type="button" value="Yes" name="btnbmolt" /><br><br />
+                    <div class="form-group" id="bodymolt" style="display: none">
+                        <label asp-for="BiologicalData.BodyMolt" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.BodyMolt", (SelectList)ViewBag.BM, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.BodyMolt" class="text-danger"></span>
+                    </div>
+                    <span>Enter Flight Feather Molt data?</span>
+                    <input type="button" value="Yes" name="btnffmolt" /><br><br />
+                    <div class="form-group" id="flightmolt" style="display: none">
+                        <label asp-for="BiologicalData.FlightFeatherMolt" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.FlightFeatherMolt", (SelectList)ViewBag.FM, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.FlightFeatherMolt" class="text-danger"></span>
+                    </div>
+                    <span>Enter Flight Feather Wear data?</span>
+                    <input type="button" value="Yes" name="btnffwear" /><br><br />
+                    <div class="form-group" id="flightwear" style="display: none">
+                        <label asp-for="BiologicalData.FlightFeatherWear" class="control-label"></label>
+                        @Html.DropDownList("BiologicalData.FlightFeatherWear", (SelectList)ViewBag.FW, "Please select", new { @class = "form-control" })
+                        <span asp-validation-for="BiologicalData.FlightFeatherWear" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.Mass" class="control-label"></label>
+                        <input asp-for="BiologicalData.Mass" class="form-control" />
+                        <span asp-validation-for="BiologicalData.Mass" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.WingChord" class="control-label"></label>
+                        <input id="wingChordInput" asp-for="BiologicalData.WingChord" class="form-control" />
+                        <span asp-validation-for="BiologicalData.WingChord" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.TailLength" class="control-label"></label>
+                        <input id="tailLengthInput" asp-for="BiologicalData.TailLength" class="form-control" />
+                        <span asp-validation-for="BiologicalData.TailLength" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.ExposedCulmen" class="control-label"></label>
+                        <input id="culmenInput" asp-for="BiologicalData.ExposedCulmen" class="form-control" />
+                        <span asp-validation-for="BiologicalData.ExposedCulmen" class="text-danger"></span>
+                    </div>
+                    <span>Enter Tarsus data?</span>
+                    <input type="button" value="Yes" name="btntarsus" /><br><br />
+                    <div class="form-group" id="tarsus" style="display: none">
+                        <label asp-for="BiologicalData.Tarsus" class="control-label"></label>
+                        <input asp-for="BiologicalData.Tarsus" class="form-control" />
+                        <span asp-validation-for="BiologicalData.Tarsus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BiologicalData.Notes" class="control-label"></label>
+                        <input asp-for="BiologicalData.Notes" class="form-control" />
+                        <span asp-validation-for="BiologicalData.Notes" class="text-danger"></span>
+                    </div>
+                    @Html.HiddenFor(Model => Model.BiologicalData.BirdId)
+                    @Html.HiddenFor(Model => Model.Species.alphaCode)
+                    @Html.HiddenFor(Model => Model.Species.maxCulmen)
+                    @Html.HiddenFor(Model => Model.Species.minCulmen)
+                    @Html.HiddenFor(Model => Model.Species.maxWing)
+                    @Html.HiddenFor(Model => Model.Species.minWing)
+                    @Html.HiddenFor(Model => Model.Species.minTail)
+                    @Html.HiddenFor(Model => Model.Species.maxTail)
+
+                    <div class="form-group">
+                        @*<button type="button" onclick="validateForm()">Submit</button>*@
+                        <input id="submitFormButton" type="submit" value="Add" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-6">
+                <div style="text-align: left">
+                    <img src="~/SiteImages/chickadee.jpg" width="600" height="800" />
                 </div>
 
-            }
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group" id="text">
-                <label asp-for="BiologicalData.Age" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.Age", (SelectList)ViewBag.Age, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.Age" class="text-danger"></span>
             </div>
+        </div>
+        <script>
+            $(function () {
+                $("input[name=btnskull]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#skull").show();
+                    }
+                    else {
+                        $("#skull").hide();
+                    }
+                });
 
-            <div class="form-group" id="text">
-                <label asp-for="BiologicalData.HowAged" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.HowAged", (SelectList)ViewBag.How, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.HowAged" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.Sex" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.Sex", (SelectList)ViewBag.Sex, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.Sex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.HowSexed" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.HowSexed", (SelectList)ViewBag.How, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.HowSexed" class="text-danger"></span>
-            </div>
-            <span>Enter CP data?</span>
-            <input type="button" value="Yes" name="btnCP" /><br><br />
-            <div class="form-group" id="cp" style="display: none">
-                <label asp-for="BiologicalData.CloacalProtuberance" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.CloacalProtuberance", (SelectList)ViewBag.ClP, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.CloacalProtuberance" class="text-danger"></span>
-            </div>
-            <span>Enter BP data?</span>
-            <input type="button" value="Yes" name="btnBP" /><br><br />
-            <div class="form-group" id="bp" style="display: none">
-                <label asp-for="BiologicalData.BroodPatch" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.BroodPatch", (SelectList)ViewBag.BrP, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.BroodPatch" class="text-danger"></span>
-            </div>
-            <span>Enter Skull data?</span>
-            <input type="button" value="Yes" name="btnskull" /><br><br />
-            <div class="form-group" id="skull" style="display: none">
-                <label asp-for="BiologicalData.Skull" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.Skull", (SelectList)ViewBag.Skull, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.Skull" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.Fat" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.Fat", (SelectList)ViewBag.fat, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.Fat" class="text-danger"></span>
-            </div>
-            <span>Enter Body Molt data?</span>
-            <input type="button" value="Yes" name="btnbmolt" /><br><br />
-            <div class="form-group" id="bodymolt" style="display: none">
-                <label asp-for="BiologicalData.BodyMolt" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.BodyMolt", (SelectList)ViewBag.BM, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.BodyMolt" class="text-danger"></span>
-            </div>
-            <span>Enter Flight Feather Molt data?</span>
-            <input type="button" value="Yes" name="btnffmolt" /><br><br />
-            <div class="form-group" id="flightmolt" style="display: none">
-                <label asp-for="BiologicalData.FlightFeatherMolt" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.FlightFeatherMolt", (SelectList)ViewBag.FM, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.FlightFeatherMolt" class="text-danger"></span>
-            </div>
-            <span>Enter Flight Feather Wear data?</span>
-            <input type="button" value="Yes" name="btnffwear" /><br><br />
-            <div class="form-group" id="flightwear" style="display: none">
-                <label asp-for="BiologicalData.FlightFeatherWear" class="control-label"></label>
-                @Html.DropDownList("BiologicalData.FlightFeatherWear", (SelectList)ViewBag.FW, "Please select", new { @class = "form-control" })
-                <span asp-validation-for="BiologicalData.FlightFeatherWear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.Mass" class="control-label"></label>
-                <input asp-for="BiologicalData.Mass" class="form-control" />
-                <span asp-validation-for="BiologicalData.Mass" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.WingChord" class="control-label"></label>
-                <input id="wingChordInput" asp-for="BiologicalData.WingChord" class="form-control" />
-                <span asp-validation-for="BiologicalData.WingChord" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.TailLength" class="control-label"></label>
-                <input id="tailLengthInput" asp-for="BiologicalData.TailLength" class="form-control" />
-                <span asp-validation-for="BiologicalData.TailLength" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.ExposedCulmen" class="control-label"></label>
-                <input id="culmenInput" asp-for="BiologicalData.ExposedCulmen" class="form-control" />
-                <span asp-validation-for="BiologicalData.ExposedCulmen" class="text-danger"></span>
-            </div>
-            <span>Enter Tarsus data?</span>
-            <input type="button" value="Yes" name="btntarsus" /><br><br />
-            <div class="form-group" id="tarsus" style="display: none">
-                <label asp-for="BiologicalData.Tarsus" class="control-label"></label>
-                <input asp-for="BiologicalData.Tarsus" class="form-control" />
-                <span asp-validation-for="BiologicalData.Tarsus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BiologicalData.Notes" class="control-label"></label>
-                <input asp-for="BiologicalData.Notes" class="form-control" />
-                <span asp-validation-for="BiologicalData.Notes" class="text-danger"></span>
-            </div>
-            @Html.HiddenFor(Model => Model.BiologicalData.BirdId)
-            @Html.HiddenFor(Model => Model.Species.alphaCode)
-            @Html.HiddenFor(Model => Model.Species.maxCulmen)
-            @Html.HiddenFor(Model => Model.Species.minCulmen)
-            @Html.HiddenFor(Model => Model.Species.maxWing)
-            @Html.HiddenFor(Model => Model.Species.minWing)
-            @Html.HiddenFor(Model => Model.Species.minTail)
-            @Html.HiddenFor(Model => Model.Species.maxTail)
+            });
 
-            <div class="form-group">
-                @*<button type="button" onclick="validateForm()">Submit</button>*@
-                <input id="submitFormButton" type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-<script>
-    $(function () {
-        $("input[name=btnskull]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#skull").show();
-            }
-            else {
-                $("#skull").hide();
-            }
-        });
-      
-    });
+            $(function () {
+                $("input[name=btnCP]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#cp").show();
+                    }
+                    else {
+                        $("#cp").hide();
+                    }
+                });
 
-    $(function () {
-        $("input[name=btnCP]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#cp").show();
-            }
-            else {
-                $("#cp").hide();
-            }
-        });
+            });
 
-    });
+            $(function () {
+                $("input[name=btnBP]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#bp").show();
+                    }
+                    else {
+                        $("#bp").hide();
+                    }
+                });
 
-    $(function () {
-        $("input[name=btnBP]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#bp").show();
-            }
-            else {
-                $("#bp").hide();
-            }
-        });
+            });
 
-    });
+            $(function () {
+                $("input[name=btnbmolt]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#bodymolt").show();
+                    }
+                    else {
+                        $("#bodymolt").hide();
+                    }
+                });
 
-    $(function () {
-        $("input[name=btnbmolt]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#bodymolt").show();
-            }
-            else {
-                $("#bodymolt").hide();
-            }
-        });
+            });
 
-    });
+            $(function () {
+                $("input[name=btnffmolt]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#flightmolt").show();
+                    }
+                    else {
+                        $("#flightmolt").hide();
+                    }
+                });
 
-    $(function () {
-        $("input[name=btnffmolt]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#flightmolt").show();
-            }
-            else {
-                $("#flightmolt").hide();
-            }
-        });
+            });
 
-    });
+            $(function () {
+                $("input[name=btnffwear]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#flightwear").show();
+                    }
+                    else {
+                        $("#flightwear").hide();
+                    }
+                });
 
-    $(function () {
-        $("input[name=btnffwear]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#flightwear").show();
-            }
-            else {
-                $("#flightwear").hide();
-            }
-        });
-
-    });
+            });
 
 
-    $(function () {
-        $("input[name=btntarsus]").click(function () {
-            if ($(this).val() == "Yes") {
-                $("#tarsus").show();
-            }
-            else {
-                $("#tarsus").hide();
-            }
-        });
+            $(function () {
+                $("input[name=btntarsus]").click(function () {
+                    if ($(this).val() == "Yes") {
+                        $("#tarsus").show();
+                    }
+                    else {
+                        $("#tarsus").hide();
+                    }
+                });
 
-    });
-</script>
+            });
+        </script>
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+    </body>
+
 
