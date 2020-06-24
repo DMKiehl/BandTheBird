@@ -9,7 +9,7 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: black;
 }
 
 .btn-primary {
@@ -22,6 +22,16 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
 }
 
 /* Sticky footer styles
@@ -68,4 +78,22 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+.navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 {
+    background-color:lightgray;
+}
+
+#intro {
+    background-color: lightsteelblue;
+    /*opacity: .4;*/
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.weather {
+    color: black;
+}
+
+.weatherdata {
+    color: black;
 }
