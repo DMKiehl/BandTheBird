@@ -20,7 +20,7 @@ namespace BandTheBirdProj.Models
         public double? OpenTemp { get; set; }
         [Display(Name = "Closing Temperature")]
         public double? CloseTemp { get; set; }
-        [Display(Name = "Cloud Cover")]
+        [Display(Name = "Cloud Cover(Percentage)")]
         public string CloudCover { get; set; }
         public string Precipitation { get; set; }
         [Display(Name = "Open Time")]

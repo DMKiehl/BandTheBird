@@ -1,21 +1,19 @@
 ﻿@model BandTheBirdProj.Models.ResearchSite
 
 @{
-    ViewData["Title"] = "ExportEnvironment";
+    ViewData["Title"] = "ViewDailySiteData";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <body style="background-color: lightgray">
-        <h1 style="text-align: center; color: black; padding-bottom: 10px; padding-top: 10px">Export Daily Site Data</h1>
-
+        <h1 style="text-align: center; color: black; padding-bottom: 10px; padding-top: 10px">View Site Data</h1>
         <div>
             <a asp-action="Index">Banding Home</a>
         </div>
         <hr />
-
         <h5 style="color: black; padding-bottom: 10px">Please choose a research site.</h5>
         <div class="row">
             <div class="col-md-4">
-                <form asp-action="ExportEnvironment">
+                <form asp-action="ViewDailySiteData">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="SiteName" class="control-label"></label>
@@ -29,7 +27,8 @@
                 </form>
             </div>
         </div>
-        
+
+
 
     </body>
 

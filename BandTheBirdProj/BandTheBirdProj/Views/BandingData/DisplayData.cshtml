@@ -1,0 +1,79 @@
+﻿@model IEnumerable<BandTheBirdProj.Models.Environmental>
+
+@{
+    ViewData["Title"] = "DisplayData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <body style="background-color: lightgray">
+        <h1 style="text-align: center; color: black; padding-bottom: 10px; padding-top: 10px">Display Site Data</h1>
+        <p>
+            <a asp-action="AddEnvironment">Enter Daily Site Data</a> |
+            <a asp-action="Index">Banding Home</a>
+        </p>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ResearchDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpenTemp)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CloseTemp)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CloudCover)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precipitation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpenTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CloseTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteName)
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ResearchDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpenTemp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseTemp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloudCover)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precipitation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpenTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CloseTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SiteName)
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </body>

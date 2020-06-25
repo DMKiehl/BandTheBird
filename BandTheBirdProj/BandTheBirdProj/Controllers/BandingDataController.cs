@@ -543,6 +543,24 @@ namespace BandTheBirdProj.Controllers
             return uniqueFileName;
         }
 
+        public ActionResult ViewDailySiteData()
+        {
+            var researchSites = _context.ResearchSite;
+            ViewBag.Sites = new SelectList(researchSites, "SiteName", "SiteName");
 
+            return View();
+        }
+
+        [HttpPost, ActionName("ViewDailySiteData")]
+        public ActionResult ViewDailySiteData(ResearchSite research)
+        {
+            var siteData = _context.Environmental.Where(e => e.SiteName == research.SiteName).ToList();
+            return View("DisplayData", siteData);
+        }
+
+        public ActionResult DisplayData(List<Environmental> data)
+        {
+            return View(data);
+        }
     }    
 }
