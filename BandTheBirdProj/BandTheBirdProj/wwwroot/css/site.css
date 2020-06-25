@@ -97,3 +97,9 @@ body {
 .weatherdata {
     color: black;
 }
+
+.quote {
+    color: black;
+    text-align: center;
+    background-color: hsla(0, 100%, 90%, 0.4);
+}

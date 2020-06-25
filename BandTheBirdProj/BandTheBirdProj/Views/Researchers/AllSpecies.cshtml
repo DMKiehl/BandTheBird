@@ -6,12 +6,23 @@
 }
 
     <body style="background-color: lightgray">
-        <h1 style="text-align: center; color: black;">All Species</h1>
+        <h1 style="text-align: center; color: black; padding-top: 10px; padding-bottom: 10px">All Species</h1>
+     
 
         <p>
             <a asp-action="AddSpecies">Add a Species</a>
         </p>
-        <table class="table table-striped">
+
+      
+        @using (Html.BeginForm())
+        {
+            <p>
+                Search by Alpha Code: @Html.TextBox("AlphaSearch")
+                <input type="submit" value="Search" />
+
+            </p>
+        }
+        <table class="table table-striped" style="text-align: center">
             <thead>
                 <tr>
                     <th>

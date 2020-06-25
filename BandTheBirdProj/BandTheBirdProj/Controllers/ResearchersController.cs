@@ -146,9 +146,14 @@ namespace BandTheBirdProj.Controllers
             return _context.Researcher.Any(e => e.ResearchId == id);
         }
 
-        public async Task<IActionResult> AllSpecies()
+        public async Task<IActionResult> AllSpecies(string AlphaSearch)
         {
             List<Species> species = await _apiCalls.GetSpecies();
+
+            if (!String.IsNullOrEmpty(AlphaSearch))
+            {
+                species = species.Where(r => r.alphaCode.Contains(AlphaSearch)).ToList();
+            }
             return View(species);
         }
 
@@ -209,7 +214,7 @@ namespace BandTheBirdProj.Controllers
             var site = _context.ResearchSite.Where(r => r.SiteId == id).SingleOrDefault();
             return View(site);
         }
-
+        [HttpPost, ActionName("EditSite")]
         public async Task<IActionResult> EditSite(ResearchSite site)
         {
             var researchSite = _context.ResearchSite.Where(r => r.SiteId == site.SiteId).SingleOrDefault();

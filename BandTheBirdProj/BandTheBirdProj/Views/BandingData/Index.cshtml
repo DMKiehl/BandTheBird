@@ -4,20 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <body style=" background-image: url('../SiteImages/sunrisebirds.jpg');">
-        <h1 style="text-align: center; color: black">Welcome Bander!</h1>
+        <h1 style="text-align: center; color: black; padding-top: 10px">Welcome Bander!</h1>
 
 
 
-        <p style="color: black; text-align: center; font-size: 16px;">
+        <p style="color: black; text-align: center; font-size: 16px; padding-bottom: 40px; padding-top: 20px">
             <a asp-action="CreateBird">Enter Bird</a> |
             <a asp-action="ViewAllData">View All Data</a> |
             <a asp-action="ExportAllData">Export All Data</a> |
             <a asp-action="ExportTodayData">Export Today's Data</a> |
             <a asp-action="ExportEnvironment">Export Environmental Data</a> |
-            <a asp-action="UploadImage">Upload an Image</a>
+            <a asp-action="UploadImage">Upload an Image</a> |
+            <a asp-controller="Researchers" asp-action="Index">Home</a>
         </p>
 
-        <h4 style="text-align: center; color: black;">Birds....Are senstive indicators of the environment, a sort of "ecological litmus paper,"..The observation and 
+        <h4 class="quote" style="text-align: center; color: black;">Birds....Are senstive indicators of the environment, a sort of "ecological litmus paper,"..The observation and 
         recording of bird populations over time lead inevitably to environmental awareness 
         and can signal impending changes. -Roger Tory Peterson</h4>
     </body>

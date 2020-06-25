@@ -5,18 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <body style="background-color: lightgray">
-        <h1 style="text-align: center; color: black">Export Environmental Data</h1>
+        <h1 style="text-align: center; color: black; padding-bottom: 10px; padding-top: 10px">Export Daily Site Data</h1>
 
+        <div>
+            <a asp-action="Index">Banding Home</a>
+        </div>
+        <hr />
 
-
-        <h4 style="color: black">Please choose a research site.</h4>
+        <h5 style="color: black; padding-bottom: 10px">Please choose a research site.</h5>
         <div class="row">
             <div class="col-md-4">
                 <form asp-action="ExportEnvironment">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="SiteName" class="control-label"></label>
-                        @Html.DropDownList("SiteName", (SelectList)ViewBag.Sites, "Please select", new { @class = "form-control" })                     
+                        @Html.DropDownList("SiteName", (SelectList)ViewBag.Sites, "Please select", new { @class = "form-control" })
                         <span asp-validation-for="SiteName" class="text-danger"></span>
                     </div>
 

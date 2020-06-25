@@ -5,8 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <body style="background-color: lightgray">
-        <h1 style="text-align: center; color: black">View Data</h1>
-
+        <h1 style="text-align: center; color: black; padding-top: 10px; padding-bottom: 10px">View Data</h1>
+        <div>
+            <a asp-action="Index">Banding Home</a>
+        </div>
+        <hr />
 
         @using (Html.BeginForm())
         {
@@ -18,7 +21,7 @@
                 <input type="submit" balue="Search" />
             </p>
         }
-        <table class="table table-striped" id="data">
+        <table class="table table-striped" id="data" style="text-align: center">
             <thead>
                 <tr>
                     <th>
