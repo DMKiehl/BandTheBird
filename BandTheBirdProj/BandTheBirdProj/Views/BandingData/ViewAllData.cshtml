@@ -14,11 +14,14 @@
         @using (Html.BeginForm())
         {
             <p>
-                Search by Alpha Code: @Html.TextBox("AlphaSearch")
+                @*Search Alpha Code: @Html.TextBox("AlphaSearch")
+                <input type="submit" value="Search" />*@
+                Search Data: 
+                <input class="search" id="myInput" type="text" placeholder="Search......" />
+                Search Band Size: @Html.TextBox("BandSearch")
                 <input type="submit" value="Search" />
 
-                Search by Band Size: @Html.TextBox("BandSearch")
-                <input type="submit" balue="Search" />
+                
             </p>
         }
         <table class="table table-striped" id="data" style="text-align: center">
@@ -196,15 +199,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Notes)
                         </td>
-                        @*<td>
-                            <a asp-action="Edit" asp-route-id="@item.BirdId">Edit</a>
-                        </td>*@
+                       
 
                     </tr>
                 }
             </tbody>
         </table>
-        @*<script>
+        <script>
 
             $(document).ready(function () {
                 $('#myInput').on('keyup', function () {
@@ -214,6 +215,6 @@
                     });
                 });
             });
-        </script>*@
+        </script>
     </body>
 
