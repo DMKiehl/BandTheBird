@@ -41,7 +41,10 @@ namespace BandTheBirdProj.Controllers
             }
             var researcher = _context.Researcher.Where(r => r.IdentityUserId == userId).SingleOrDefault();
             CurrentWeather weather = await _apiCalls.GetCurrentWeather(researcher.ResearchSiteZip);
-            return View(weather);
+            IndexViewModel viewModel = new IndexViewModel();
+            viewModel.Weather = weather;
+            viewModel.Researcher = researcher;
+            return View(viewModel);
         }
 
         public ActionResult Details(int? id)
