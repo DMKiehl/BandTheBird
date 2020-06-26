@@ -226,7 +226,7 @@ namespace BandTheBirdProj.Controllers
 
             if (!String.IsNullOrEmpty(BandSearch))
             {
-                researcherBirds = researcherBirds.Where(r => r.BandingData.BandSize.Contains(BandSearch));
+                researcherBirds = researcherBirds.Where(r => r.BandingData.BandSize == BandSearch);
             }
 
             return View(researcherBirds);
